@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const myFunctions = require('./myFunctions.js');
+const myFunctions = require('./myPages.js');
 
 var mimeTypes = {
   '.html': 'text/html',
@@ -31,7 +31,7 @@ http.createServer(function (request, response) {
   if (filePath == './') {
     contentType = mimeTypes['.html'];
     response.writeHead(200, { 'Content-Type': contentType });
-    response.end(myFunctions.getIndex(), 'utf-8');
+    response.end(myFunctions.getPages(), 'utf-8');
   } else { // get a static file, like css, images, etc.
     fs.readFile(filePath, function (error, content) {
       if (error) {

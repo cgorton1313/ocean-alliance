@@ -1,7 +1,7 @@
 module.exports = {
-    getIndex
+    getPages
   }
   
-  function getIndex() {
+  function getPages () {
     return 'HELLO WORLD';
   }
