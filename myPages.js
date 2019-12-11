@@ -36,7 +36,7 @@ module.exports = {
     This file can then be moved to your Web server.</p>
     
     </body>
-    <script src="ocean-alliance.js"></script>
+    <script src="js/ocean-alliance.js"></script>
     </html>`;
     return msg;
   }
