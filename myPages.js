@@ -3,28 +3,40 @@ module.exports = {
   }
   
   function getIndex () {
-    var msg = `
-<!DOCTYPE html>
-<html>
-<title>Snot Bot</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<meta charset="UTF-8">
-
-<div class="w3-row w3-container"> 
-  <div class="w3-fourth w3-container">
-    <h3>Logo Here</h3>
-  </div>
-  <div class="w3-twofourths w3-container">
-    <h1>Domain name here</h1>
-  </div>
-  <div class="w3-fourth">
-    <h2></h2>
-  </div>
-
-</div>
-
-<div class="w3-third w3-container w3-margin-bottom">
-  <h1>Filters</h1>
-</div> ` ;
+    var msg = `<!DOCTYPE html>
+    <html>
+    <head>
+    <title>DUMMY SNOTBOT</title>
+    <style type="text/css">
+    <!--
+    h1	{text-align:center;
+      font-family:Arial, Helvetica, Sans-Serif;
+      }
+    
+    p	{text-indent:20px;
+      }
+    -->
+    </style>
+    </head>
+    <body bgcolor = "#ffffcc" text = "#000000">
+    <h1>Hello, World!</h1>
+    
+    <p>You can modify the text in the box to the left any way you like, and
+    then click the "Show Page" button below the box to display the
+    result here. Go ahead and do this as often and as long as you like.</p>
+    
+    <p>You can also use this page to test your Javascript functions and local
+    style declarations. Everything you do will be handled entirely by your own
+    browser; nothing you type into the text box will be sent back to the
+    server.</p>
+    
+    <p>When you are satisfied with your page, you can select all text in the
+    textarea and copy it to a new text file, with an extension of
+    either <b>.htm</b> or <b>.html</b>, depending on your Operating System.
+    This file can then be moved to your Web server.</p>
+    
+    </body>
+    <script src="ocean-alliance.js"></script>
+    </html>`;
     return msg;
   }
