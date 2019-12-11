@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const myFunctions = require('./myFunctions.js');
+const myFunctions = require('./myPages.js');
 
 var mimeTypes = {
   '.html': 'text/html',
