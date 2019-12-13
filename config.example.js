@@ -2,14 +2,14 @@
 // then put your values in. config.js will be gitignored
 const config = {
     app: {
-    port: 12345
+        port: 12345
     },
     db: {
-    host: 'localhost',
-    user: 'username',
-    password: 'password',
-    database: 'database'
+        host: 'localhost',
+        user: 'username',
+        password: 'password',
+        database: 'database'
     }
-    };
-    
-    module.exports = config;
+};
+
+module.exports = config;
