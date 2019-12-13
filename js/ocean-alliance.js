@@ -15,9 +15,9 @@ var map = L.map('map').setView([43, -70], 8);
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
 
-var position = { "latitude": 42.6, "longitude": -70.6 }
-var position2 = { "latitude": 40.6, "longitude": -72.6 }
+var positions = [{ "latitude": 42.6, "longitude": -70.6 }, { "latitude": 40.6, "longitude": -72.6 }, {"latitude": 40.9, "longitude": -70.9}];
 
-L.marker([position.latitude, position.longitude]).addTo(map);
-
-L.marker([position2.latitude, position2.longitude], { icon: greenIcon }).addTo(map);
+for (let i = 0; i < positions.length ; i++){
+    L.marker([positions[i].latitude, positions[i].longitude]).addTo(map);
+    console.log('hello');
+}
