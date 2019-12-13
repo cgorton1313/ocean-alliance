@@ -8,13 +8,16 @@ var greenIcon = new L.Icon({
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
-  });
+});
 
-  var map = L.map('map').setView([43, -70], 8);
+var map = L.map('map').setView([43, -70], 8);
 
-        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
-        }).addTo(map);
+L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+}).addTo(map);
 
-        L.marker([42.616131, -70.668930]).addTo(map);
+var position = { "latitude": 42.6, "longitude": -70.6 }
+var position2 = { "latitude": 40.6, "longitude": -72.6 }
 
-        L.marker([42.605542, -70.664255], {icon: greenIcon}).addTo(map);
+L.marker([position.latitude, position.longitude]).addTo(map);
+
+L.marker([position2.latitude, position2.longitude], { icon: greenIcon }).addTo(map);
