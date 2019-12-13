@@ -32,6 +32,12 @@ http.createServer(function (request, response) {
     contentType = mimeTypes['.html'];
     response.writeHead(200, { 'Content-Type': contentType });
     response.end(myFunctions.getIndex(), 'utf-8');
+  } else if (filePath.startsWith('./flights')) {
+    let data = { name: "Izzy", age: 15};
+    let stringdata = JSON.stringify(data);
+    contentType = mimeTypes['.json'];
+    response.writeHead(200, {'Content-Type': contentType});
+    response.end(stringdata, 'utf-8');
   } else { // get a static file, like css, images, etc.
     fs.readFile(filePath, function (error, content) {
       if (error) {
