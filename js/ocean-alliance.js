@@ -12,7 +12,7 @@ var greenIcon = new L.Icon({
 
   var map = L.map('map').setView([43, -70], 8);
 
-        L.tileLayer(http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}, {
+        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
         }).addTo(map);
 
         L.marker([42.616131, -70.668930]).addTo(map);
