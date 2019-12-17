@@ -1,7 +1,8 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const myFunctions = require('./myPages.js');
+const myPages = require('./myPages.js');
+const config = require('./config.js');
 
 var mimeTypes = {
   '.html': 'text/html',
@@ -31,7 +32,7 @@ http.createServer(function (request, response) {
   if (filePath == './') {
     contentType = mimeTypes['.html'];
     response.writeHead(200, { 'Content-Type': contentType });
-    response.end(myFunctions.getIndex(), 'utf-8');
+    response.end(myPages.getIndex(), 'utf-8');
   } else if (filePath.startsWith('./flights')) {
     let data = { name: "Izzy", age: 15};
     let stringdata = JSON.stringify(data);
@@ -59,6 +60,5 @@ http.createServer(function (request, response) {
       }
     });
   }
-}).listen(33333);
-
-console.log('Server running at http://127.0.0.1:' + 33333 + '/');
+}).listen(config.app.port);
+console.log('Server running at http://127.0.0.1:' + config.app.port + '/');
