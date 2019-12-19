@@ -24,5 +24,5 @@ for (let i = 0; i < positions.length; i++) {
 
 
 function getFlightData() {
-    console.log(getFlightData)
+    console.log()
 }
