@@ -1,5 +1,4 @@
-console.log('ocean-alliance.js working');
-//CODE!
+// js for the leaflet chart on homepage
 
 var greenIcon = new L.Icon({
     iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
