@@ -1,3 +1,4 @@
+//Requires to pull in depent libraries
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -30,9 +31,7 @@ http.createServer(function (request, response) {
   var contentType = mimeTypes[extname] || 'application/octet-stream';
 
   if (filePath == './') {
-    contentType = mimeTypes['.html'];
-    response.writeHead(200, { 'Content-Type': contentType });
-    response.end(myPages.getIndex(), 'utf-8');
+    myPages.getIndex(response);
   } else if (filePath.startsWith('./flights')) {
     let data = { name: "Izzy", age: 15};
     let stringdata = JSON.stringify(data);
