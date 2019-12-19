@@ -23,6 +23,6 @@ for (let i = 0; i < positions.length; i++) {
 }
 
 
-function getFlightData('flight') {
+function getFlightData() {
     console.log(getFlightData)
 }
