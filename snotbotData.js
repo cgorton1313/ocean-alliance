@@ -50,3 +50,7 @@ async function getQueryData(sql) {
 
   return result;
 }
+
+module.exports = {
+  getFlights
+}
