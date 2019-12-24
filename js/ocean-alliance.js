@@ -42,7 +42,6 @@ async function addFlightsToChart() {
     // don't forget to change the property names to match the data you actually got back
     for (let i = 0; i < positions.length; i++) {
         L.marker([positions[i].latitude, positions[i].longitude]).addTo(map).on('click', function () { getFlightData(positions[i].flight); });
-        console.log('hello');
     }
     flightDots.addTo(myChart);
     // when you get this running, decide whether markers work.
@@ -51,10 +50,10 @@ async function addFlightsToChart() {
     // circle for regular flights instead of markers.
 }
 
-function getFlightData(flight) {
+async function getFlightData(flight) {
     // this is going to need to wait until Izzy has a getFlightData
-    // url for us. once she does, it will be very similar. we'll call
-    // it and get a json object (actually an array with 1 object in it)
+    // url for us. once she does, it will be very similar to the getFlights function.
+    // we'll call it and get a json object (actually an array with 1 object in it)
     // it will have all the data for one flight.
     // then, we'll need to put that data into the html that Cori builds
     // for you.
