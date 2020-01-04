@@ -33,7 +33,9 @@ http.createServer(function (request, response) {
   if (filePath == './') {
     myPages.getIndex(response);
   } else if (filePath.startsWith('./flights')) {
-    let data = { name: "Izzy", age: 15};
+    let data = [
+      { flight: '10DR19_f2', takeoff_latitude: '19.15319', takeoff_longitude: -69.206062 }, 
+      { flight: '10DR19_f1', takeoff_latitude: 19.5555, takeoff_longitude: -69.206062 }];
     let stringdata = JSON.stringify(data);
     contentType = mimeTypes['.json'];
     response.writeHead(200, {'Content-Type': contentType});
