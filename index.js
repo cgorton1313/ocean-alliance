@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const myPages = require('./myPages.js');
 const config = require('./config.js');
+const flightData = require('./flightData.js');
 
 var mimeTypes = {
   '.html': 'text/html',
@@ -33,13 +34,12 @@ http.createServer(function (request, response) {
   if (filePath == './') {
     myPages.getIndex(response);
   } else if (filePath.startsWith('./flights')) {
-    let data = [
-      { flight: '10DR19_f2', takeoff_latitude: '19.15319', takeoff_longitude: -69.206062 }, 
-      { flight: '10DR19_f1', takeoff_latitude: 19.5555, takeoff_longitude: -69.206062 }];
-    let stringdata = JSON.stringify(data);
+    let arrayFlights = [];
+    arrayFlights.push(new flightData.flight('10DR19_f1',19.5555,-69.206062));
+    arrayFlights.push(new flightData.flight('10DR19_f2',19.15319,-69.206062));
     contentType = mimeTypes['.json'];
     response.writeHead(200, {'Content-Type': contentType});
-    response.end(stringdata, 'utf-8');
+    response.end(JSON.stringify(arrayFlights), 'utf-8');
   } else { // get a static file, like css, images, etc.
     fs.readFile(filePath, function (error, content) {
       if (error) {
