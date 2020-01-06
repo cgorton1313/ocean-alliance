@@ -14,12 +14,9 @@ var map = L.map('map').setView([43, -70], 8);
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
 
-// Carling- here's where we left off. We want to get these positions
-// from the server and add them to the chart. There are going to be a lot of them,
-// so we're going to use some tricks. First we'll just call a magic function
-// instead of making these things ourselves:
-//var positions = [{ "flight": "Ak1", "latitude": 42.6, "longitude": -70.6 }, { "flight": "", "latitude": 40.6, "longitude": -72.6 }, { "flight": "", "latitude": 40.9, "longitude": -70.9 }];
+
 addFlightsToChart();
+
 
 // Okay, now we need to build the magic function... here it is.
 // Make all the flight dots and add them to the chart
@@ -40,8 +37,8 @@ async function addFlightsToChart() {
 
     // here's your for loop from before
     // don't forget to change the property names to match the data you actually got back
-    for (let i = 0; i < positions.length; i++) {
-        L.marker([positions[i].latitude, positions[i].longitude]).addTo(map).on('click', function () { getFlightData(positions[i].flight); });
+    for (let i = 0; i < flights.length; i++) {
+        L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
     }
     flightDots.addTo(myChart);
     // when you get this running, decide whether markers work.
