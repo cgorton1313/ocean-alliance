@@ -1,37 +1,37 @@
-var greenIcon = new L.Icon({
-    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+var blackIcon = new L.Icon({
+	iconUrl: 'img/marker-icon-2x-black.png',
+	shadowUrl: 'img/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
 });
 
-var blueIcon = new L.Icon({
-    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+var greenIcon = new L.Icon({
+	iconUrl: 'img/marker-icon-2x-green.png',
+	shadowUrl: 'img/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
 });
 
 var redIcon = new L.Icon({
-    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+	iconUrl: 'img/marker-icon-2x-red.png',
+	shadowUrl: 'img/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
 });
 
-var blackIcon = new L.Icon({
-    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+var blueIcon = new L.Icon({
+	iconUrl: 'img/marker-icon-2x-blue.png',
+	shadowUrl: 'img/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
 });
 
 
@@ -47,23 +47,22 @@ addFlightsToChart();
 async function addFlightsToChart() {
     let response = await fetch('./flights');
 
-    // next, we turn the data into an array of objects,
-    // just like the one you created by hand. The only difference is
-    // that latitude will be called take_off_latitude and longitude 
-    // will be called take_off_longitude
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
 
-    // now, new leaflet trick to speed things up.
-    // we're going to create this group thing, add all the markers to it,
-    // then add it all at once to the chart.
     let flightDots = L.featureGroup();
 
-    // here's your for loop from before
-    // don't forget to change the property names to match the data you actually got back
     for (let i = 0; i < flights.length; i++) {
-        L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
+        dot = L.circle([data[i].takeoff_latitude, data[i].takeoff_longitude], {
+            color: color,
+            fillColor: color,
+            fillOpacity: 0.5,
+            radius: 100
+          });
+
+    flightDots.addLayer(dot);
+       // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
     }
-    flightDots.addTo(myChart);
+    flightDots.addTo(map);
     // when you get this running, decide whether markers work.
     // we are going to have 600 of them! maybe we want markers only
     // when we have a video? in that case, let's look at using a 
