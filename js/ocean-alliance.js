@@ -47,19 +47,10 @@ addFlightsToChart();
 async function addFlightsToChart() {
     let response = await fetch('./flights');
 
-    // next, we turn the data into an array of objects,
-    // just like the one you created by hand. The only difference is
-    // that latitude will be called take_off_latitude and longitude 
-    // will be called take_off_longitude
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
 
-    // now, new leaflet trick to speed things up.
-    // we're going to create this group thing, add all the markers to it,
-    // then add it all at once to the chart.
     let flightDots = L.featureGroup();
 
-    // here's your for loop from before
-    // don't forget to change the property names to match the data you actually got back
     for (let i = 0; i < flights.length; i++) {
         L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
     }
