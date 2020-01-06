@@ -44,21 +44,21 @@ http.createServer(function (request, response) {
     let flightData = `
       [
       {
-      flight: "10DR19_f2",
-      takeoff_latitude: "19.15319",
-      takeoff_longitude: -69.206062,
-      date: "2019-03-01T05:00:00.000Z",
-      country: "Dominican Republic",
-      location: "Samana",
-      waterbody: "Samana Bay",
-      objective: "EBC",
-      airframe: "Inspire 2",
-      flight_start: "7:48:21 AM",
-      flight_end: "7:51:51",
-      flight_duration: "0:03:30",
-      max_distance: "378",
-      total_mileage: "678",
-      common_name: "Humpback whale"
+      "flight": "10DR19_f2",
+      "takeoff_latitude": "19.15319",
+      "takeoff_longitude": -69.206062,
+      "date": "2019-03-01T05:00:00.000Z",
+      "country": "Dominican Republic",
+      "location": "Samana",
+      "waterbody": "Samana Bay",
+      "objective": "EBC",
+      "airframe": "Inspire 2",
+      "flight_start": "7:48:21 AM",
+      "flight_end": "7:51:51",
+      "flight_duration": "0:03:30",
+      "max_distance": "378",
+      "total_mileage": "678",
+      "common_name": "Humpback whale"
       }
       ]`
       contentType = mimeTypes['.json'];
