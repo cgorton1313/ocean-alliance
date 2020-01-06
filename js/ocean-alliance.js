@@ -53,8 +53,8 @@ async function addFlightsToChart() {
 
     for (let i = 0; i < flights.length; i++) {
         dot = L.circle([data[i].takeoff_latitude, data[i].takeoff_longitude], {
-            color: color,
-            fillColor: color,
+            color: 'red',
+            fillColor: 'red',
             fillOpacity: 0.5,
             radius: 100
           });
