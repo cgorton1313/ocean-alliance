@@ -33,13 +33,37 @@ http.createServer(function (request, response) {
 
   if (filePath == './') {
     myPages.getIndex(response);
-  } else if (filePath.startsWith('./flights')) {
+  } else if (filePath.startsWith('./flights')) {    // return all flights (minimal data)
     let arrayFlights = [];
     arrayFlights.push(new flightData.flight('10DR19_f1',19.5555,-69.206062));
     arrayFlights.push(new flightData.flight('10DR19_f2',19.15319,-69.206062));
     contentType = mimeTypes['.json'];
     response.writeHead(200, {'Content-Type': contentType});
     response.end(JSON.stringify(arrayFlights), 'utf-8');
+  }else if (filePath.startsWith('./flightData')) {    //return one flight (all the data)
+    let flightData = `
+      [
+      {
+      flight: "10DR19_f2",
+      takeoff_latitude: "19.15319",
+      takeoff_longitude: -69.206062,
+      date: "2019-03-01T05:00:00.000Z",
+      country: "Dominican Republic",
+      location: "Samana",
+      waterbody: "Samana Bay",
+      objective: "EBC",
+      airframe: "Inspire 2",
+      flight_start: "7:48:21 AM",
+      flight_end: "7:51:51",
+      flight_duration: "0:03:30",
+      max_distance: "378",
+      total_mileage: "678",
+      common_name: "Humpback whale"
+      }
+      ]`
+      contentType = mimeTypes['.json'];
+      response.writeHead(200, {'Content-Type': contentType});
+      response.end(flightData, 'utf-8');
   } else { // get a static file, like css, images, etc.
     fs.readFile(filePath, function (error, content) {
       if (error) {
