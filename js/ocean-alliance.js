@@ -57,7 +57,7 @@ async function addFlightsToChart() {
             fillColor: 'red',
             fillOpacity: 0.5,
             radius: 100
-		  }).on('click', function () { getFlightData(flights[i].flight); });
+		  }).on('click', getFlightData);
 
     flightDots.addLayer(dot);
     // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
