@@ -51,7 +51,20 @@ async function addFlightsToChart() {
 
     let flightDots = L.featureGroup();
 
+	// eventually, we're going to know for each flight the following:
+	// - flight
+	// - takeoff_latitude, takeoff_longitude
+	// - common_name
+	// - media_file_name
     for (let i = 0; i < flights.length; i++) {
+		// right here, we need to know whether the flight has a media file. if it does,
+		// we want to create a marker and add it to the flightDots
+		// if not, we want a circle
+		// either way, we want to add some custom options to the object so that when clicked, the next
+		// function can know whether to make a video button and what file it should open
+		// you already have your circle, now just put it in an if statement and make the else part
+		// of the statement create a marker (hint: you have one commented out down below)
+		// you can give every marker a redIcon for now and we'll change that later
         let dot = L.circle([flights[i].takeoff_latitude, flights[i].takeoff_longitude], {
             color: 'red',
             fillColor: 'red',
