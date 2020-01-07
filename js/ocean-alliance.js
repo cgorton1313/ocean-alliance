@@ -52,21 +52,17 @@ async function addFlightsToChart() {
     let flightDots = L.featureGroup();
 
     for (let i = 0; i < flights.length; i++) {
-        dot = L.circle([data[i].takeoff_latitude, data[i].takeoff_longitude], {
+        let dot = L.circle([flights[i].takeoff_latitude, flights[i].takeoff_longitude], {
             color: 'red',
             fillColor: 'red',
             fillOpacity: 0.5,
             radius: 100
-          });
+		  }).on('click', function () { getFlightData(flights[i].flight); });
 
     flightDots.addLayer(dot);
-       // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
+    // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
     }
     flightDots.addTo(map);
-    // when you get this running, decide whether markers work.
-    // we are going to have 600 of them! maybe we want markers only
-    // when we have a video? in that case, let's look at using a 
-    // circle for regular flights instead of markers.
 }
 
 async function getFlightData(flight) {
