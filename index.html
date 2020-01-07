@@ -47,19 +47,37 @@
       <!--legend ends-->
 
       <!--chart begins-->
-      <div class="w3-col m10 l10">
+      <div class="w3-col m10 l10 w3-margin-bottom" >
         <div id='chart' style='height: 400px'>
           <h1>Chart</h1>
           <div id='map' style='height: 500px'></div>
         </div>
       </div>
       <!--chart ends-->
-
     </div>
     <!--legend/chart ends-->
 
     <!--flight data row begins-->
-    <div class="w3-row w3-card w3-container">
+    <div class="w3-row w3-card w3-container w3-padding-64">
+      <h3>Flight:</h3>
+      <div class= "w3-half">
+        <ul class=w3-ul>
+          <li>Waterbody: <span id="waterbody"></span></li>
+          <li>Objective: <span id="Objective"></span></li>
+          <li>Species: <span id="species"></span></li>
+
+          <button class="w3-button w3-blue w3-round "> Open Video </button>
+        </ul>
+      </div>
+      <div class = "w3-half">
+        <ul class= w3-ul>
+          <li>Date: <span id="date"></span></li>
+          <li>Start Time: <span id="start-time"></span></li>
+          <li>Duration: <span id="duration"></span></li>
+          <li>Max. Distance: <span id="max-distance"></span></li>
+          <li>Total Distance: <span id="total-distance"></span></li>
+        </ul>
+      </div>
     </div>
     <!-- flight data ends -->
 
