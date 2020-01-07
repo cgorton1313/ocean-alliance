@@ -10,6 +10,8 @@ async function getFlights() {
   // pass your SQL string to a function and wait for the response
   let result = await getQueryData(sql);
 
+  // since we know there is only one flight, we want to turn this array
+  // of objects into a single object before returning it. but how?
   return result;
 }
 
