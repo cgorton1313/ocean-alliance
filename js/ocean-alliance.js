@@ -65,12 +65,12 @@ async function addFlightsToChart() {
     flightDots.addTo(map);
 }
 
-async function getFlightData(flight) {
+async function getFlightData() {
     // this is going to need to wait until Izzy has a getFlightData
     // url for us. once she does, it will be very similar to the getFlights function.
     // we'll call it and get a json object (actually an array with 1 object in it)
     // it will have all the data for one flight.
     // then, we'll need to put that data into the html that Cori builds
     // for you.
-    console.log(flight);
+    console.log(this.options);
 }
