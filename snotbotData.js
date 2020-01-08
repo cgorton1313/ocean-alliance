@@ -45,12 +45,11 @@ async function getFlightData (flight) {
   AND max_distance IS NOT null
   AND total_distance IS NOT null
   AND common_name IS NOT null
-  AND flight = ` + flight + `
-  `;
+  AND flights.flight = '` + flight + `'`;
 
   let result = await getQueryData(sql);
-
-  return result;
+  var flightData = result[0];
+  return flightData;
 }
 
 
@@ -93,5 +92,6 @@ async function getQueryData(sql) {
 }
 
 module.exports = {
-  getFlights
+  getFlights,
+  getFlightData
 }
