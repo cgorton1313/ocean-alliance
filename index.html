@@ -64,7 +64,8 @@
           <li>Objective: <span id="Objective"></span></li>
           <li>Species: <span id="species"></span></li>
 
-          <button class="w3-button w3-blue w3-round "> Open Video </button>
+          <button onclick="document.getElementById('video').style.display='block'" 
+      class="w3-button w3-blue w3-round">Open Video</button>
         </ul>
       </div>
       <div class = "w3-half">
@@ -78,6 +79,20 @@
       </div>
     </div>
     <!-- flight data ends -->
+    
+     <!--- Video Modal starts-->
+     <div id="video" class="w3-modal" style="z-index: 9999;">
+      <div class="w3-modal-content w3-card w3-animate-bottom w3-padding">
+        <div class="w3-container">
+          <div><span onclick="document.getElementById('video').style.display='none'"
+              class="w3-button w3-display-topright">&times;</span></div>
+          <video controls style="width: 95%">
+            <source id="videoPlayerSrc" src="" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--- Video Modal ends-->
 
   </div>
   <!-- everything below navbar ends here -->
