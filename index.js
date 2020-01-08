@@ -4,8 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const myPages = require('./myPages.js');
 const config = require('./config.js');
-const flightData = require('./flightData.js');
-
+const snotbotData = require('./snotbotData.js')
 var mimeTypes = {
   '.html': 'text/html',
   '.js': 'text/javascript',
@@ -34,12 +33,11 @@ http.createServer(function (request, response) {
   if (filePath == './') {
     myPages.getIndex(response);
   } else if (filePath.startsWith('./flights')) {    // return all flights (minimal data)
-    let arrayFlights = [];
-    arrayFlights.push(new flightData.flight('10DR19_f1',19.5555,-69.206062));
-    arrayFlights.push(new flightData.flight('10DR19_f2',19.15319,-69.206062));
-    contentType = mimeTypes['.json'];
-    response.writeHead(200, {'Content-Type': contentType});
-    response.end(JSON.stringify(arrayFlights), 'utf-8');
+      contentType = mimeTypes['.json'];
+      snotbotData.getFlights().then(function(flights) {
+      response.writeHead(200, { 'Content-Type': contentType });
+      response.end(JSON.stringify(flights), 'utf-8');
+    });
   }else if (filePath.startsWith('./flightData')) {    //return one flight (all the data)
     let flightData = `
       [

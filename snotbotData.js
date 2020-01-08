@@ -5,7 +5,16 @@ const util = require('util'); // for promisify
 async function getFlights() {
   // create a string that represents your SQL statement
   // ask me about using ` instead of ' in javascript, or google it
-  let sql = ``;
+  let sql = `
+  SELECT flights.flight, take_off_latitude, take_off_longitude, common_name, 'media_file_name'
+  FROM flights, flights_species, species
+  WHERE take_off_latitude IS NOT null
+  AND take_off_longitude IS NOT null
+  AND flights.flight IS NOT null
+  AND common_name IS NOT null
+  AND flights.flight = flights_species.flight
+  AND species.species_id = flights_species.species_id
+  `;
 
   // pass your SQL string to a function and wait for the response
   let result = await getQueryData(sql);
@@ -14,6 +23,17 @@ async function getFlights() {
   // of objects into a single object before returning it. but how?
   return result;
 }
+
+async function getFlightData () {
+  let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name 
+  FROM flights, objective_codes, species, flights_species
+  `;
+
+  let result = await getQueryData(sql);
+
+  return result;
+}
+
 
 // this function will connect to the database, query, disconnect, and return the query result
 async function getQueryData(sql) {
