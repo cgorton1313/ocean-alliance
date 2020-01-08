@@ -64,21 +64,21 @@ async function addFlightsToChart() {
 		// of the statement create a marker (hint: you have one commented out down below)
         // you can give every marker a redIcon for now and we'll change that later
         var dotColor;
-        if (flight[i].common_name == 'Humpback') {
+        if (flights[i].common_name == 'Humpback Whale') {
             dotColor = 'red';
-        } else if (flight[i].common_name == 'Fin Whale') {
+        } else if (flights[i].common_name == 'Finback Whale') {
             dotColor = green;
-        } else if (flight[i].common_name == 'Blue Whale') {
+        } else if (flights[i].common_name == 'Blue Whale') {
             dotColor = 'blue';
         }else {
             dotColor = 'black';
         }
             
-        let dot = L.circle([flights[i].takeoff_latitude, flights[i].takeoff_longitude], {
+        let dot = L.circle([flights[i].take_off_latitude, flights[i].take_off_longitude], {
             color: dotColor,
             fillColor: dotColor,
             fillOpacity: 0.5,
-            radius: 20000,
+            radius: 2000,
             flight: flights[i].flight
           }).on('click', getFlightData);
     
