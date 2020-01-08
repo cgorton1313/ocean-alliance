@@ -6,14 +6,22 @@ async function getFlights() {
   // create a string that represents your SQL statement
   // ask me about using ` instead of ' in javascript, or google it
   let sql = `
-  SELECT flights.flight, take_off_latitude, take_off_longitude, common_name, 'media_file_name'
-  FROM flights, flights_species, species
-  WHERE take_off_latitude IS NOT null
-  AND take_off_longitude IS NOT null
-  AND flights.flight IS NOT null
-  AND common_name IS NOT null
-  AND flights.flight = flights_species.flight
-  AND species.species_id = flights_species.species_id
+SELECT everythingButMediaFiles.flight, take_off_latitude, take_off_longitude, common_name, media_file_name
+  FROM (
+    SELECT flights.flight, take_off_latitude, take_off_longitude, common_name
+    FROM flights, flights_species, species
+    WHERE take_off_latitude IS NOT null
+    AND take_off_longitude IS NOT null
+    AND flights.flight IS NOT null
+    AND common_name IS NOT null
+    AND flights.flight = flights_species.flight
+    AND species.species_id = flights_species.species_id)
+  AS everythingButMediaFiles
+LEFT JOIN (SELECT media_files.flight, media_file_name
+FROM media_files
+WHERE use_on_web = 1)
+  AS use_media
+ON everythingButMediaFiles.flight = use_media.flight;
   `;
 
   // pass your SQL string to a function and wait for the response
@@ -24,7 +32,7 @@ async function getFlights() {
   return result;
 }
 
-async function getFlightData (flight) {
+async function getFlightData(flight) {
   let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name, 'media_file_name' 
   FROM flights, objective_codes, species, flights_species
   WHERE flights.flight_objective = objective_codes.objective_code
@@ -75,7 +83,7 @@ async function getQueryData(sql) {
 
   // this is magic. don't ask.
   let query = util.promisify(connection.query).bind(connection); // node native promisify
-  
+
   // try to query the database, handle errors if they happen
   let result;
   try {
