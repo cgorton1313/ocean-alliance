@@ -5,7 +5,16 @@ const util = require('util'); // for promisify
 async function getFlights() {
   // create a string that represents your SQL statement
   // ask me about using ` instead of ' in javascript, or google it
-  let sql = ``;
+  let sql = `
+  SELECT flights.flight, take_off_latitude, take_off_longitude, common_name, 'media_file_name'
+  FROM flights, flights_species, species
+  WHERE take_off_latitude IS NOT null
+  AND take_off_longitude IS NOT null
+  AND flights.flight IS NOT null
+  AND common_name IS NOT null
+  AND flights.flight = flights_species.flight
+  AND species.species_id = flights_species.species_id
+  `;
 
   // pass your SQL string to a function and wait for the response
   let result = await getQueryData(sql);
