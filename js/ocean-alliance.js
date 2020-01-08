@@ -65,23 +65,25 @@ async function addFlightsToChart() {
 		// you can give every marker a redIcon for now and we'll change that later
         let dot = L.circle([flights[i].takeoff_latitude, flights[i].takeoff_longitude], {
             if (flights[i].commonName == 'humpback') {
-                color: 'red',
+                color:'red'
                 fillColor: 'red'  
             } else if (flights[i].commonName == 'fin whale') {
-                color: 'green',
+                color: 'green'
                 fillColor: 'green'
             } else if (flights[i].commonName == 'blue whale'){
-                color: 'blue',
+                color: 'blue'
                 fillColor: 'blue'
             } else {
-                color: 'black',
+                color: 'black'
                 fillColor: 'black'
             }
+        }
                
             fillOpacity: 0.5,
             radius: 20000,
             flight: flights[i].flight
-		  }).on('click', getFlightData);
+          }).on('click', getFlightData);
+    
 
     flightDots.addLayer(dot);
     // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
