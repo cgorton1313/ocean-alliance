@@ -1,37 +1,37 @@
 var blackIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-black.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-black.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 var greenIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-green.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-green.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 var redIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-red.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-red.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 var blueIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-blue.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-blue.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 
@@ -46,9 +46,7 @@ addFlightsToChart();
 // Make all the flight dots and add them to the chart
 async function addFlightsToChart() {
     let response = await fetch('./flights');
-
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
-
     let flightDots = L.featureGroup();
 
 	// eventually, we're going to know for each flight the following:
@@ -69,7 +67,8 @@ async function addFlightsToChart() {
             color: 'red',
             fillColor: 'red',
             fillOpacity: 0.5,
-            radius: 100
+            radius: 20000,
+            flight: flights[i].flight
 		  }).on('click', getFlightData);
 
     flightDots.addLayer(dot);
