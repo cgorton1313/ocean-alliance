@@ -62,26 +62,30 @@ async function addFlightsToChart() {
 		// function can know whether to make a video button and what file it should open
 		// you already have your circle, now just put it in an if statement and make the else part
 		// of the statement create a marker (hint: you have one commented out down below)
-		// you can give every marker a redIcon for now and we'll change that later
+        // you can give every marker a redIcon for now and we'll change that later
+        var dotColor;
+        if (flgiht[i].common_name == 'Humpback') {
+            color: 'red';
+            fillColor: 'red';
+        } else if (flgiht[i].common_name == 'Fin Whale') {
+            color: green;
+            fillColor:green;
+        } else if (flgiht[i].common_name == 'Blue Whale') {
+            color: 'Blue';
+            fillColor: 'Blue';
+        }else if (flgiht[i].common_name == 'Minkie Whale'){
+            color: 'black';
+            fillColor:'black';
+        }
+            
         let dot = L.circle([flights[i].takeoff_latitude, flights[i].takeoff_longitude], {
-            if (flights[i].commonName == 'humpback') {
-                color: 'red',
-                fillColor: 'red'  
-            } else if (flights[i].commonName == 'fin whale') {
-                color: 'green',
-                fillColor: 'green'
-            } else if (flights[i].commonName == 'blue whale'){
-                color: 'blue',
-                fillColor: 'blue'
-            } else {
-                color: 'black',
-                fillColor: 'black'
-            }
-               
+            color: dotColor,
+            fillColor: dotColor,
             fillOpacity: 0.5,
             radius: 20000,
             flight: flights[i].flight
-		  }).on('click', getFlightData);
+          }).on('click', getFlightData);
+    
 
     flightDots.addLayer(dot);
     // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
