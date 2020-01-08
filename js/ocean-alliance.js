@@ -1,37 +1,37 @@
 var blackIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-black.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-black.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 var greenIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-green.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-green.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 var redIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-red.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-red.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 var blueIcon = new L.Icon({
-	iconUrl: 'img/marker-icon-2x-blue.png',
-	shadowUrl: 'img/marker-shadow.png',
-	iconSize: [25, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+    iconUrl: 'img/marker-icon-2x-blue.png',
+    shadowUrl: 'img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 
@@ -46,21 +46,18 @@ addFlightsToChart();
 // Make all the flight dots and add them to the chart
 async function addFlightsToChart() {
     let response = await fetch('./flights');
-
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
-
     let flightDots = L.featureGroup();
-
     for (let i = 0; i < flights.length; i++) {
         dot = L.circle([data[i].takeoff_latitude, data[i].takeoff_longitude], {
             color: 'red',
             fillColor: 'red',
             fillOpacity: 0.5,
             radius: 100
-          });
+        });
 
-    flightDots.addLayer(dot);
-       // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
+        flightDots.addLayer(dot);
+        // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
     }
     flightDots.addTo(map);
     // when you get this running, decide whether markers work.
