@@ -24,7 +24,7 @@ async function getFlights() {
   return result;
 }
 
-async function getFlightData () {
+async function getFlightData (flight) {
   let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name, 'media_file_name' 
   FROM flights, objective_codes, species, flights_species
   WHERE flights.flight_objective = objective_codes.objective_code
@@ -45,6 +45,7 @@ async function getFlightData () {
   AND max_distance IS NOT null
   AND total_distance IS NOT null
   AND common_name IS NOT null
+  AND flight = ` + flight + `
   `;
 
   let result = await getQueryData(sql);
