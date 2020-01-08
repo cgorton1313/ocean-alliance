@@ -4,12 +4,12 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-crossorigin=""/>
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
 
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-crossorigin=""></script>
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
 
 <body>
   <!--nav bar begins-->
@@ -20,45 +20,65 @@ crossorigin=""></script>
   </div>
   <!--nav bar ends-->
 
-  <div class="w3-row w3-container">
-    <!--logo/name begins-->
-    <div class="w3-half w3-container">
-      <div class="w3-half w3-container">
-        <h1>Ocean Alliance</h1>
-      </div>
-    </div>
-    <div class="w3-half w3-container">
-      <h1> SnotBot </h1>
-    </div>
-  </div>
-  <!--logo/name ends-->
+  <!-- everything below navbar starts -->
+  <div class="w3-container">
 
-  <!--legend/chart begins-->
-  <div class="w3-row w3-container">
-    <div class="w3-container">
-      <div class="w3-half w3-container">
-        <div class= "w3-half w3-container">
-          <h2>Legend</h2>
-          <div class="w3-bar-block">
-            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding"></i>  Videos <img src="airplane.jpg" width="30"></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding" style= color:red></i> Humpback</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding" style= color:rgb(51,224,51)></i> Fin Whales</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding" style= color:Blue></i> Blue Whales</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding"></i> Minkle Whales</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding"></i> Other Whales</a>
-          </div>
+    <!--legend/chart begins-->
+    <div class="w3-row w3-margin-bottom">
+
+      <!--legand begins-->
+      <div class="w3-col m2 l2">
+        <h2>Legend</h2>
+        <div class="w3-bar-block">
+          <a href="#" class="w3-bar-item w3-button w3-padding"></i>Videos<img
+              src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png"
+              width="10"><img
+              src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png"
+              width="10"><img
+              src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"
+              width="10"></a>
+          <a href="#" class="w3-bar-item w3-button w3-padding w3-text-red"></i> Humpbacks</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding w3-text-green"></i> Fin Whales</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding w3-text-blue"></i> Blue Whales</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"></i> Minkie Whales</a>
+          <a href="#" class="w3-bar-item w3-button w3-padding"></i> Other</a>
         </div>
       </div>
-      <div class="w3-half w3-container">
-        <h1>Chart</h1>
-        <div id = 'map' style = 'height: 500px'></div>
-        <script src="js/ocean-alliance.js"></script>
+      <!--legend ends-->
+
+      <!--chart begins-->
+      <div class="w3-col m10 l10">
+        <div id='map' style='height: 400px'>
+        </div>
+      </div>
+      <!--chart ends-->
+
+    </div>
+    <!--legend/chart ends-->
+
+    <!--flight data row begins-->
+    <div class="w3-row w3-card w3-container">
+      <button onclick="document.getElementById('video').style.display='block'" 
+      class="w3-button w3-blue">Open Video</button>
+    </div>
+    <!-- flight data ends -->
+    
+    <!--- Video Modal starts-->
+    <div id="video" class="w3-modal" style="z-index: 9999;">
+      <div class="w3-modal-content w3-card w3-animate-bottom w3-padding">
+        <div class="w3-container">
+          <div><span onclick="document.getElementById('video').style.display='none'"
+              class="w3-button w3-display-topright">&times;</span></div>
+          <video controls style="width: 95%">
+            <source id="videoPlayerSrc" src="" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
+    <!--- Video Modal ends-->
   </div>
- <!--legend/chart ends-->
+  <!-- everything below navbar ends here -->
+  <script src="js/ocean-alliance.js"></script>
 </body>
-
 
 </html>

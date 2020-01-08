@@ -48,30 +48,50 @@ async function addFlightsToChart() {
     let response = await fetch('./flights');
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
     let flightDots = L.featureGroup();
+<<<<<<< HEAD
+=======
+
+	// eventually, we're going to know for each flight the following:
+	// - flight
+	// - takeoff_latitude, takeoff_longitude
+	// - common_name
+	// - media_file_name
+>>>>>>> 84aa6e8a0ba18fdc7ec4303de2e4c5b497a08fbc
     for (let i = 0; i < flights.length; i++) {
-        dot = L.circle([data[i].takeoff_latitude, data[i].takeoff_longitude], {
+		// right here, we need to know whether the flight has a media file. if it does,
+		// we want to create a marker and add it to the flightDots
+		// if not, we want a circle
+		// either way, we want to add some custom options to the object so that when clicked, the next
+		// function can know whether to make a video button and what file it should open
+		// you already have your circle, now just put it in an if statement and make the else part
+		// of the statement create a marker (hint: you have one commented out down below)
+		// you can give every marker a redIcon for now and we'll change that later
+        let dot = L.circle([flights[i].takeoff_latitude, flights[i].takeoff_longitude], {
             color: 'red',
             fillColor: 'red',
             fillOpacity: 0.5,
             radius: 100
+<<<<<<< HEAD
         });
 
         flightDots.addLayer(dot);
         // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
+=======
+		  }).on('click', getFlightData);
+
+    flightDots.addLayer(dot);
+    // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
+>>>>>>> 84aa6e8a0ba18fdc7ec4303de2e4c5b497a08fbc
     }
     flightDots.addTo(map);
-    // when you get this running, decide whether markers work.
-    // we are going to have 600 of them! maybe we want markers only
-    // when we have a video? in that case, let's look at using a 
-    // circle for regular flights instead of markers.
 }
 
-async function getFlightData(flight) {
+async function getFlightData() {
     // this is going to need to wait until Izzy has a getFlightData
     // url for us. once she does, it will be very similar to the getFlights function.
     // we'll call it and get a json object (actually an array with 1 object in it)
     // it will have all the data for one flight.
     // then, we'll need to put that data into the html that Cori builds
     // for you.
-    console.log(flight);
+    console.log(this.options);
 }
