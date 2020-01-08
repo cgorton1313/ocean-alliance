@@ -24,6 +24,17 @@ async function getFlights() {
   return result;
 }
 
+async function getFlightData () {
+  let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name 
+  FROM flights, objective_codes, species, flights_species
+  `;
+
+  let result = await getQueryData(sql);
+
+  return result;
+}
+
+
 // this function will connect to the database, query, disconnect, and return the query result
 async function getQueryData(sql) {
   // this statement uses the values from config.js
