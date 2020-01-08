@@ -79,6 +79,27 @@
     </div>
     <!-- flight data ends -->
 
+    <!--flight data row begins-->
+    <div class="w3-row w3-card w3-container">
+      <button onclick="document.getElementById('video').style.display='block'" 
+      class="w3-button w3-blue">Open Video</button>
+    </div>
+    <!-- flight data ends -->
+    
+     <!--- Video Modal starts-->
+     <div id="video" class="w3-modal" style="z-index: 9999;">
+      <div class="w3-modal-content w3-card w3-animate-bottom w3-padding">
+        <div class="w3-container">
+          <div><span onclick="document.getElementById('video').style.display='none'"
+              class="w3-button w3-display-topright">&times;</span></div>
+          <video controls style="width: 95%">
+            <source id="videoPlayerSrc" src="" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--- Video Modal ends-->
+
   </div>
   <!-- everything below navbar ends here -->
   <script src="js/ocean-alliance.js"></script>
