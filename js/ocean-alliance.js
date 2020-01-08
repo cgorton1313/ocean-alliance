@@ -48,15 +48,12 @@ async function addFlightsToChart() {
     let response = await fetch('./flights');
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
     let flightDots = L.featureGroup();
-<<<<<<< HEAD
-=======
 
 	// eventually, we're going to know for each flight the following:
 	// - flight
 	// - takeoff_latitude, takeoff_longitude
 	// - common_name
 	// - media_file_name
->>>>>>> 84aa6e8a0ba18fdc7ec4303de2e4c5b497a08fbc
     for (let i = 0; i < flights.length; i++) {
 		// right here, we need to know whether the flight has a media file. if it does,
 		// we want to create a marker and add it to the flightDots
@@ -70,18 +67,12 @@ async function addFlightsToChart() {
             color: 'red',
             fillColor: 'red',
             fillOpacity: 0.5,
-            radius: 100
-<<<<<<< HEAD
-        });
-
-        flightDots.addLayer(dot);
-        // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
-=======
+            radius: 20000,
+            flight: flights[i].flight
 		  }).on('click', getFlightData);
 
     flightDots.addLayer(dot);
     // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', function () { getFlightData(flights[i].flight); });
->>>>>>> 84aa6e8a0ba18fdc7ec4303de2e4c5b497a08fbc
     }
     flightDots.addTo(map);
 }
