@@ -2,8 +2,6 @@
 
 const snotbotData = require('../snotbotData.js');
 
-
-
 async function testSomething() {
   // here you can call a function that is in snotbotData.js and wait for the result
   let someData = await snotbotData.getFlights();
