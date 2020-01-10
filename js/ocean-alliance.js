@@ -94,8 +94,7 @@ async function addFlightsToChart() {
 
 async function getFlightData() {
     // you'll need to call ./flightData?flight=xxx where xxx is the flight in question
-    console.log(this.options);
-    let response = await fetch('./flightData?flight='+this.options.flight);
+    let response = await fetch('./flightData?flight=' + this.options.flight);
     let data = await response.json();
     console.log(data);
 
