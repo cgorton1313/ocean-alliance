@@ -67,7 +67,7 @@ async function addFlightsToChart() {
         if (flights[i].common_name == 'Humpback Whale') {
             dotColor = 'red';
         } else if (flights[i].common_name == 'Finback Whale') {
-            dotColor = green;
+            dotColor = 'green';
         } else if (flights[i].common_name == 'Blue Whale') {
             dotColor = 'blue';
         }else {
