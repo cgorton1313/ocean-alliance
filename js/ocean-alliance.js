@@ -96,5 +96,14 @@ async function getFlightData() {
     // you'll need to call ./flightData?flight=xxx where xxx is the flight in question
     let response = await fetch('./flightData?flight=' + this.options.flight);
     let flightData = await response.json();
-    console.log(flightData);
+    document.getElementById('flight').innerHTML = flightData.flight;
+    document.getElementById('date').innerHTML = flightData.flight_date;
+    document.getElementById('waterbody').innerHTML = flightData.flight_waterbody;
+    document.getElementById('Objective').innerHTML = flightData.objective;
+    document.getElementById('start-time').innerHTML = flightData.start_time;
+    document.getElementById('species').innerHTML = flightData.common_name;
+    document.getElementById('duration').innerHTML = flightData.flight_duration;
+    document.getElementById('max-distance').innerHTML = flightData.max_distance;
+    document.getElementById('total-distance').innerHTML = flightData.total_distance;
+    
 }
