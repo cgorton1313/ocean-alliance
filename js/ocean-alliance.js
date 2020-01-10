@@ -105,5 +105,7 @@ async function getFlightData() {
     document.getElementById('duration').innerHTML = flightData.flight_duration;
     document.getElementById('max-distance').innerHTML = flightData.max_distance;
     document.getElementById('total-distance').innerHTML = flightData.total_distance;
-    
+    // get video
+    document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
+    console.log(this.options.mediaFile);
 }
