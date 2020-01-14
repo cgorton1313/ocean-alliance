@@ -106,6 +106,11 @@ async function getFlightData() {
     document.getElementById('max-distance').innerHTML = flightData.max_distance;
     document.getElementById('total-distance').innerHTML = flightData.total_distance;
     // get video
-    document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
+    if (this.options.mediaFile == 'none'){
+        document.getElementById('videoBtn').setAttribute("style","display: none");
+    }else{
+        document.getElementById('videoBtn').setAttribute("style","display: block");
+        document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
+    }
     console.log(this.options.mediaFile);
 }
