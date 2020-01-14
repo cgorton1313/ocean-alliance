@@ -92,5 +92,4 @@ async function getFlightData() {
         document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
         document.getElementById('videoPlayer').load();
     }
-    console.log(this.options.mediaFile);
 }
