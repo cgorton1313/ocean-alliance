@@ -14,7 +14,7 @@ var redIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-col
 var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'});
 
 
-var map = L.map('map').setView([0, 0], .5);
+var map = L.map('map').setView([0, 0], 2);
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
@@ -90,5 +90,6 @@ async function getFlightData() {
     }else{
         document.getElementById('videoBtn').setAttribute("style","display: block");
         document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
+        document.getElementById('videoPlayer').load();
     }
 }
