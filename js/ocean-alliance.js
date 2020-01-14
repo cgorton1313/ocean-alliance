@@ -71,7 +71,7 @@ async function addFlightsToChart() {
                 color: dotColor,
                 fillColor: dotColor,
                 fillOpacity: 0.5,
-                radius: 1000,
+                radius: 500,
                 flight: flights[i].flight,
                 mediaFile: 'none'
             }).on('click', getFlightData);
