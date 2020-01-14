@@ -90,6 +90,7 @@ async function getFlightData() {
     }else{
         document.getElementById('videoBtn').setAttribute("style","display: block");
         document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
+        document.getElementById('videoPlayer').load();
     }
     console.log(this.options.mediaFile);
 }
