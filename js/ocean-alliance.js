@@ -14,7 +14,7 @@ var redIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-col
 var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'});
 
 
-var map = L.map('map').setView([43, -70], 8);
+var map = L.map('map').setView([0, 0], .5);
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
@@ -50,7 +50,7 @@ async function addFlightsToChart() {
                 color: dotColor,
                 fillColor: dotColor,
                 fillOpacity: 0.5,
-                radius: 1000,
+                radius: 50,
                 flight: flights[i].flight,
                 mediaFile: 'none'
             }).on('click', getFlightData);
