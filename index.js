@@ -44,7 +44,7 @@ http.createServer(function (request, response) {
     contentType = mimeTypes['.json'];
     snotbotData.getFlightData(queryObject.flight).then(function (flightData) {
       response.writeHead(200, { 'Content-Type': contentType });
-      response.end(JSON.stringify(flightData), 'utf-8'); console.log(flightData);
+      response.end(JSON.stringify(flightData), 'utf-8'); 
     });
 
   } else { // get a static file, like css, images, etc.
