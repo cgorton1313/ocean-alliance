@@ -35,7 +35,7 @@ var blueIcon = new L.Icon({
 });
 
 
-var map = L.map('map').setView([0, 0], .5);
+var map = L.map('map').setView([0, 0], 2);
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
