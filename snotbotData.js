@@ -1,4 +1,5 @@
 const config = require('./config.js');
+const log = require('simple-node-logger').createSimpleLogger('project.log');
 const mysql = require('mysql');
 const util = require('util'); // for promisify
 
