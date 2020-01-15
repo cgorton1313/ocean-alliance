@@ -3,6 +3,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
+const log = require('simple-node-logger').createSimpleLogger('project.log');
 const myPages = require('./myPages.js');
 const config = require('./config.js');
 const snotbotData = require('./snotbotData.js')
@@ -25,7 +26,7 @@ var mimeTypes = {
 };
 
 http.createServer(function (request, response) {
-  console.log('request for ', request.url);
+  log.info('request.url = ', request.url);
 
   var filePath = '.' + request.url;
   var extname = String(path.extname(filePath)).toLowerCase();
@@ -51,7 +52,7 @@ http.createServer(function (request, response) {
     fs.readFile(filePath, function (error, content) {
       if (error) {
         if (error.code == 'ENOENT') {
-          console.log(error);
+          log.info(error);
           fs.readFile('./404.html', function (error, content) {
             response.writeHead(404, { 'Content-Type': 'text/html' });
             response.end(content, 'utf-8');
@@ -69,4 +70,4 @@ http.createServer(function (request, response) {
     });
   }
 }).listen(config.app.port);
-console.log('Server running at http://127.0.0.1:' + config.app.port + '/');
+log.info('Server running at http://127.0.0.1:' + config.app.port + '/');

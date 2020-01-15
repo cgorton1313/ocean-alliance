@@ -75,9 +75,9 @@ async function getQueryData(sql) {
   // standard connect operation with some error handling
   connection.connect(function (err) {
     if (err) {
-      console.log('error when connecting to db:', err);
+      log.info('error when connecting to db:', err);
     } else {
-      console.log('Connected to database ' + config.db.database + ' as user ' + config.db.user);
+      log.info('Connected to database ' + config.db.database + ' as user ' + config.db.user);
     }
   });
 
@@ -89,7 +89,7 @@ async function getQueryData(sql) {
   try {
     result = await query(sql);
   } catch (err) {
-    console.log(err);
+    log.info(err);
     result = '{Error}';
   }
 
