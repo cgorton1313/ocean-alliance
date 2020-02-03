@@ -75,8 +75,23 @@ async function getFlightData() {
     // you'll need to call ./flightData?flight=xxx where xxx is the flight in question
     let response = await fetch('./flightData?flight=' + this.options.flight);
     let flightData = await response.json();
+    // switch date to YYYY/MM/DD using code from Mritunjay on stackoverflow
+    // https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript
+    let date = new Date(flightData.flight_date);
+    year = date.getFullYear();
+    month = date.getMonth()+1;
+    dt = date.getDate();
+    if (dt < 10) {
+        dt = '0' + dt;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+    
+    date = year+'-' + month + '-'+dt
+    // set data
     document.getElementById('flight').innerHTML = flightData.flight;
-    document.getElementById('date').innerHTML = flightData.flight_date;
+    document.getElementById('date').innerHTML = date;
     document.getElementById('waterbody').innerHTML = flightData.flight_waterbody;
     document.getElementById('Objective').innerHTML = flightData.objective;
     document.getElementById('start-time').innerHTML = flightData.start_time;
