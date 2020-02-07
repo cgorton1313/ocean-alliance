@@ -16,6 +16,14 @@ var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-co
 
 var map = L.map('map').setView([20, 0], 2);
 
+map.on('zoomend', function() {
+    sendToConsole();
+});
+
+function sendToConsole() {
+    console.log("map has been zoomed in.");
+}
+
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
 
