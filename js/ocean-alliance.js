@@ -21,7 +21,7 @@ map.on('zoomend', function() {
 });
 
 function sendToConsole() {
-    console.log("map has been zoomed in.");
+    console.log("map has been zoomed.");
 }
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
