@@ -11,4 +11,4 @@ This website...
 ## Deployment Details
 
 The server is restarted automatically every minute by executing the following cron job:
-  cd /home/penguinh/snotbot.whale.org/ && nohup /home/penguinh/bin/node /home/penguinh/snotbot.whale.org/index.js &
+    cd /home/penguinh/snotbot.whale.org/ && nohup /home/penguinh/bin/node /home/penguinh/snotbot.whale.org/index.js &
