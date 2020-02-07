@@ -20,10 +20,8 @@ map.on('zoomend', function() {
     sendToConsole();
 });
 
-var zoomLevel = getZoom();
 function sendToConsole() {
     console.log("map has been zoomed.");
-    console.log("map zoom level: " + zoomLevel);
 }
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
