@@ -2,7 +2,7 @@
 
 Ocean Alliance is a program based in Gloucester, Massachusetts that studies the behavioral patterns and genetics of different species of whales.
 
-Their team is responsible for the creation of the SnotBot, which is a drone that collects snot from the whale's blow (the air that is expelled from their blowholes). This allows access to whale DNA without interfering with the whale invasively.
+Their team is responsible for the creation of the SnotBot&reg;, which is a drone that collects snot from the whale's blow (the air that is expelled from their blowholes). This allows access to whale DNA without interfering with the whale invasively.
 
 ## Snotbot Tracker
 
