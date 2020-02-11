@@ -3,13 +3,13 @@
 const snotbotData = require('../snotbotData.js');
 
 async function testSomething() {
-  // here you can call a function that is in snotbotData.js and wait for the result
-  let someData = await snotbotData.getFlights();
-  console.log(someData);
-  // now you should have the result from the function you called
-  // it's up to you to check and see if it worked. maybe use a
-  // console log or something? the result from most of your 
-  // functions is going to be an array of records (which are each objects)
+    // here you can call a function that is in snotbotData.js and wait for the result
+    let someData = await snotbotData.getExpeditions();
+    console.log(someData);
+    // now you should have the result from the function you called
+    // it's up to you to check and see if it worked. maybe use a
+    // console log or something? the result from most of your 
+    // functions is going to be an array of records (which are each objects)
 }
 
 // here you call a function that tests something in snotbotData.js

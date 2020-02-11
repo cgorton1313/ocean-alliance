@@ -4,9 +4,9 @@ const util = require('util'); // for promisify
 const log = require('simple-node-logger').createSimpleLogger('project.log');
 
 async function getFlights() {
-  // create a string that represents your SQL statement
-  // ask me about using ` instead of ' in javascript, or google it
-  let sql = `
+    // create a string that represents your SQL statement
+    // ask me about using ` instead of ' in javascript, or google it
+    let sql = `
 SELECT everythingButMediaFiles.flight, take_off_latitude, take_off_longitude, common_name, media_file_name
   FROM (
     SELECT flights.flight, take_off_latitude, take_off_longitude, common_name
@@ -25,16 +25,16 @@ WHERE use_on_web = 1)
 ON everythingButMediaFiles.flight = use_media.flight;
   `;
 
-  // pass your SQL string to a function and wait for the response
-  let result = await getQueryData(sql);
+    // pass your SQL string to a function and wait for the response
+    let result = await getQueryData(sql);
 
-  // since we know there is only one flight, we want to turn this array
-  // of objects into a single object before returning it. but how?
-  return result;
+    // since we know there is only one flight, we want to turn this array
+    // of objects into a single object before returning it. but how?
+    return result;
 }
 
 async function getFlightData(flight) {
-  let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name, 'media_file_name' 
+    let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name, 'media_file_name' 
   FROM flights, objective_codes, species, flights_species
   WHERE flights.flight_objective = objective_codes.objective_code
   AND flights.flight = flights_species.flight
@@ -56,51 +56,61 @@ async function getFlightData(flight) {
   AND common_name IS NOT null
   AND flights.flight = '` + flight + `'`;
 
-  let result = await getQueryData(sql);
-  var flightData = result[0];
-  return flightData;
+    let result = await getQueryData(sql);
+    var flightData = result[0];
+    return flightData;
 }
 
+async function getExpeditions() {
+    let sql = `
+    SELECT expedition_name, expedition_location, expedition_start_date, expedition_end_date, expedition_latitude, expedition_longitude 
+    FROM expeditions
+    `;
 
+    let result = await getQueryData(sql);
+    return result;
+
+}
 // this function will connect to the database, query, disconnect, and return the query result
 async function getQueryData(sql) {
-  // this statement uses the values from config.js
-  // it's common to keep usernames, passwords, etc., in a config file
-  let connection = mysql.createConnection({
-    host: config.db.host,
-    user: config.db.user,
-    password: config.db.password,
-    database: config.db.database
-  });
+    // this statement uses the values from config.js
+    // it's common to keep usernames, passwords, etc., in a config file
+    let connection = mysql.createConnection({
+        host: config.db.host,
+        user: config.db.user,
+        password: config.db.password,
+        database: config.db.database
+    });
 
-  // standard connect operation with some error handling
-  connection.connect(function (err) {
-    if (err) {
-      log.info('error when connecting to db:', err);
-    } else {
-      log.info('Connected to database ' + config.db.database + ' as user ' + config.db.user);
+    // standard connect operation with some error handling
+    connection.connect(function(err) {
+        if (err) {
+            log.info('error when connecting to db:', err);
+        } else {
+            log.info('Connected to database ' + config.db.database + ' as user ' + config.db.user);
+        }
+    });
+
+    // this is magic. don't ask.
+    let query = util.promisify(connection.query).bind(connection); // node native promisify
+
+    // try to query the database, handle errors if they happen
+    let result;
+    try {
+        result = await query(sql);
+    } catch (err) {
+        log.info(err);
+        result = '{Error}';
     }
-  });
 
-  // this is magic. don't ask.
-  let query = util.promisify(connection.query).bind(connection); // node native promisify
+    // it's important to close the database connection
+    connection.end();
 
-  // try to query the database, handle errors if they happen
-  let result;
-  try {
-    result = await query(sql);
-  } catch (err) {
-    log.info(err);
-    result = '{Error}';
-  }
-
-  // it's important to close the database connection
-  connection.end();
-
-  return result;
+    return result;
 }
 
 module.exports = {
-  getFlights,
-  getFlightData
+    getFlights,
+    getFlightData,
+    getExpeditions
 }
