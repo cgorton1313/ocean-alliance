@@ -18,13 +18,13 @@ var map = L.map('map').setView([20, 0], 2);
 
 map.on('zoomend', function() {
     sendToConsole();
+    
 });
 
-//var zoomLevel = getZoom();
-
 function sendToConsole() {
+    var zoomLevel = map.getZoom();
     console.log("map has been zoomed.");
-//    console.log("map zoom level: " + zoomLevel);
+    console.log("map zoom level: " + zoomLevel);
 }
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
