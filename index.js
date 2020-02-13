@@ -36,6 +36,12 @@ http.createServer(function (request, response) {
 
   if (filePath == './') {
     myPages.getIndex(response);
+  } else if (filePath.startsWith('./expeditions')) {
+    contentType = mimeTypes['.json'];
+    snotbotData.getExpeditions().then(function (expeditions) {
+      response.writeHead(200, { 'Content-Type': contentType });
+      response.end(JSON.stringify(expeditions), 'utf-8');
+    });     
   } else if (filePath.startsWith('./flights')) {    // return all flights (minimal data)
     contentType = mimeTypes['.json'];
     snotbotData.getFlights().then(function (flights) {
