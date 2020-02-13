@@ -14,7 +14,7 @@ var redIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-col
 var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'});
 
 
-var map = L.map('map').setView([20, 0], 2);
+var map = L.map('map').setView([35, -60], 3); 
 
 map.on('zoomend', function() {
     sendToConsole();
