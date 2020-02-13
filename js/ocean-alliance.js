@@ -1,8 +1,3 @@
-map.on('zoomend', function() {
-    sendToConsole();
-    
-});
-
 var LeafIcon = L.Icon.extend({
     options: {
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -20,6 +15,10 @@ var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-co
 
 
 var map = L.map('map').setView([20, 0], 2);
+
+map.on('zoomend', function() {
+    sendToConsole();
+});
 
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
