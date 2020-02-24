@@ -63,7 +63,7 @@ async function getFlightData(flight) {
 
 async function getExpeditions() {
     let sql = `
-    SELECT expedition_name, expedition_location, expedition_start_date, expedition_end_date, expedition_latitude, expedition_longitude 
+    SELECT expedition_name, expedition_location, expedition_start_date, expedition_end_date, expedition_latitude, expedition_longitude, num_flights
     FROM expeditions
     `;
 
