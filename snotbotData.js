@@ -63,8 +63,13 @@ async function getFlightData(flight) {
 
 async function getExpeditions() {
     let sql = `
-    SELECT expedition_name, expedition_location, expedition_start_date, expedition_end_date, expedition_latitude, expedition_longitude, num_flights
-    FROM expeditions
+    SELECT expeditions.expedition_name, expeditions.expedition_location, expeditions.expedition_start_date, expeditions.expedition_end_date, expeditions.expedition_latitude, expeditions.expedition_longitude, flightCount.numFlights 
+    FROM 
+    (SELECT expeditions.expedition_id, COUNT(flight) as numFlights 
+     FROM expeditions, flights 
+     WHERE expeditions.expedition_id = flights.expedition_id 
+     GROUP BY expeditions.expedition_id) as flightCount, expeditions 
+     WHERE expeditions.expedition_id = flightCount.expedition_id;
     `;
 
     let result = await getQueryData(sql);
