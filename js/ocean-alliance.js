@@ -8,25 +8,23 @@ var LeafIcon = L.Icon.extend({
     }
 });
 
-// var LeafPin = L.Icon.extend({
-//     options: {
-//         shadowUrl: './images/marker_pin_shadow.png',
-//         iconSize: [25, 41],
-//         iconAnchor: [12, 41],
-//         popupAnchor: [1, -34],
-//         shadowSize: [41, 41]
-//     }
-// });
+var LeafPin = L.Icon.extend({
+    options: {
+        iconSize: [35, 50],
+        iconAnchor: [12, 50],
+        popupAnchor: [1, -34],
+    }
+});
 
 var blackIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png'});
 var greenIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png'});
 var redIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png'});
 var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'});
 
-// var blackPin = new LeafPin({iconUrl: './images/marker_pin_black.png'});
-// var greenPin = new LeafPin({iconUrl:  './images/marker_pin_green.png'});
-// var redPin = new LeafPin({iconUrl:  './images/marker_pin_red.png'});
-// var bluePin = new LeafPin({iconUrl:  './images/marker_pin_blue.png'});
+var blackPin = new LeafPin({iconUrl: '../images/marker_pin_black.png'});
+var greenPin = new LeafPin({iconUrl:  '../images/marker_pin_green.png'});
+var redPin = new LeafPin({iconUrl:  '../images/marker_pin_red.png'});
+var bluePin = new LeafPin({iconUrl:  '../images/marker_pin_blue.png'});
 
 var map = L.map('map').setView([35, -60], 3); 
 

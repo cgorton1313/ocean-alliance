@@ -11,30 +11,27 @@ async function addFlightsToChart() {
     let flightDots = L.featureGroup();
     
     for (let i = 0; i < flights.length; i++) {
-        let dotColor;
+        let markerPin;
         let markerIcon;
         if (flights[i].common_name == 'Humpback Whale') {
-            dotColor = 'red';
+            markerPin = redPin;
             markerIcon = redIcon;
         } else if (flights[i].common_name == 'Finback Whale') {
-            dotColor = 'green';
+            markerPin = greenPin;
             markerIcon = greenIcon;
         } else if (flights[i].common_name == 'Blue Whale') {
-            dotColor = 'blue';
+            markerPin = blackPin;
             markerIcon = blueIcon;
         } else {
-            dotColor = 'black';
+            markerPin = blackPin;
             markerIcon = blackIcon;
         }
 
         
         if (flights[i].media_file_name == null) {
-            let dot = L.circle([flights[i].take_off_latitude, flights[i].take_off_longitude], {
-                color: dotColor,
-                fillColor: dotColor,
-                fillOpacity: 0.5,
-                radius: 50,
+            let dot = L.marker([flights[i].take_off_latitude, flights[i].take_off_longitude], {
                 flight: flights[i].flight,
+                icon: markerPin,
                 mediaFile: 'none'
             }).on('click', getFlightData);
 
