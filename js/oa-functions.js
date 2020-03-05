@@ -51,6 +51,27 @@ async function addFlightsToChart() {
     flightDots.addTo(map);
 }
 
+async function addExpeditionCirclesToChart() {
+    // fetch expedition and turn into a let
+    let response = await fetch('./expeditions');
+    let expeditions= await response.json(); 
+    let expeditionCircles = L.featureGroup();
+
+    for (let i = 0; i < flights.length; i++) {
+        let exCircle = L.circle([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
+            color: rebeccapurple,
+            fillColor: rebeccapurple,
+            fillOpacity: 0.5,
+            radius: 500
+        })
+
+        expeditionCircles.addLayer(exCircle)
+    };
+
+    expeditionCircles.addTo(map);
+}
+
+
 async function getFlightData() {
     // you'll need to call ./flightData?flight=xxx where xxx is the flight in question
     let response = await fetch('./flightData?flight=' + this.options.flight);
