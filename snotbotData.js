@@ -29,7 +29,7 @@ ON everythingButMediaFiles.flight = use_media.flight;
     let result = await getQueryData(sql);
 
     // since we know there is only one flight, we want to turn this array
-    // of objects into a single object before returning it. but how?
+    // of objects into a 23single object before returning it. but how?
     return result;
 }
 
