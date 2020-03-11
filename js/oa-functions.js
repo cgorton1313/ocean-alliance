@@ -54,13 +54,8 @@ async function addFlightsToChart() {
 async function addExpeditionsToChart() {
     // fetch expedition and turn into a let
     let response = await fetch('./expeditions');
-<<<<<<< HEAD
     let expeditions = await response.json();
-    let expeditionCircles = L.featureGroup();
-=======
-    let expeditions= await response.json(); 
     let expeditionMarkers = L.featureGroup();
->>>>>>> 361c9fe7900257cfd1cafb8ef9d70322e32d8225
 
     for (let i = 0; i < expeditions.length; i++) {
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
