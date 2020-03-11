@@ -9,7 +9,7 @@ async function addFlightsToChart() {
     let response = await fetch('./flights');
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
     let flightDots = L.featureGroup();
-    
+
     for (let i = 0; i < flights.length; i++) {
         let markerPin;
         let markerIcon;
@@ -27,7 +27,7 @@ async function addFlightsToChart() {
             markerIcon = blackIcon;
         }
 
-        
+
         if (flights[i].media_file_name == null) {
             let dot = L.marker([flights[i].take_off_latitude, flights[i].take_off_longitude], {
                 flight: flights[i].flight,
@@ -56,12 +56,12 @@ async function getFlightData() {
     let response = await fetch('./flightData?flight=' + this.options.flight);
     let flightData = await response.json();
     // Unhide Data Colmun
-    document.getElementById('dataColmun').setAttribute("style","display: block");
+    document.getElementById('dataColmun').setAttribute("style", "display: block");
     // switch date to YYYY/MM/DD using code from Mritunjay on stackoverflow
     // https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript
     let date = new Date(flightData.flight_date);
     year = date.getFullYear();
-    month = date.getMonth()+1;
+    month = date.getMonth() + 1;
     dt = date.getDate();
     if (dt < 10) {
         dt = '0' + dt;
@@ -69,9 +69,9 @@ async function getFlightData() {
     if (month < 10) {
         month = '0' + month;
     }
-    
-    date = year+'-' + month + '-'+dt
-    // set data
+
+    date = year + '-' + month + '-' + dt
+        // set data
     document.getElementById('flight').innerHTML = flightData.flight;
     document.getElementById('date').innerHTML = date;
     document.getElementById('waterbody').innerHTML = flightData.flight_waterbody;
@@ -82,10 +82,10 @@ async function getFlightData() {
     document.getElementById('max-distance').innerHTML = flightData.max_distance;
     document.getElementById('total-distance').innerHTML = flightData.total_distance;
     // get video
-    if (this.options.mediaFile == 'none'){
-        document.getElementById('videoBtn').setAttribute("style","display: none");
-    }else{
-        document.getElementById('videoBtn').setAttribute("style","display: block");
+    if (this.options.mediaFile == 'none') {
+        document.getElementById('videoBtn').setAttribute("style", "display: none");
+    } else {
+        document.getElementById('videoBtn').setAttribute("style", "display: block");
         document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
         document.getElementById('videoPlayer').load();
     }
