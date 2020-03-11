@@ -51,24 +51,26 @@ async function addFlightsToChart() {
     flightDots.addTo(map);
 }
 
-async function addExpeditionCirclesToChart() {
+async function addExpeditionsToChart() {
     // fetch expedition and turn into a let
     let response = await fetch('./expeditions');
+<<<<<<< HEAD
     let expeditions = await response.json();
     let expeditionCircles = L.featureGroup();
+=======
+    let expeditions= await response.json(); 
+    let expeditionMarkers = L.featureGroup();
+>>>>>>> 361c9fe7900257cfd1cafb8ef9d70322e32d8225
 
-    for (let i = 0; i < flights.length; i++) {
-        let exCircle = L.circle([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
-            color: rebeccapurple,
-            fillColor: rebeccapurple,
-            fillOpacity: 0.5,
-            radius: 500
-        })
+    for (let i = 0; i < expeditions.length; i++) {
+        let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
+            icon: expeditionIcon
+        });
 
-        expeditionCircles.addLayer(exCircle)
+        expeditionMarkers.addLayer(exIcon);
     };
 
-    expeditionCircles.addTo(map);
+    expeditionMarkers.addTo(map);
 }
 
 
