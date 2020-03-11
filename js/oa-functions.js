@@ -54,7 +54,7 @@ async function addFlightsToChart() {
 async function addExpeditionCirclesToChart() {
     // fetch expedition and turn into a let
     let response = await fetch('./expeditions');
-    let expeditions= await response.json(); 
+    let expeditions = await response.json();
     let expeditionCircles = L.featureGroup();
 
     for (let i = 0; i < flights.length; i++) {
@@ -97,7 +97,7 @@ async function getFlightData() {
     document.getElementById('date').innerHTML = date;
     document.getElementById('waterbody').innerHTML = flightData.flight_waterbody;
     document.getElementById('Objective').innerHTML = flightData.objective;
-    document.getElementById('start-time').innerHTML = flightData.start_time;
+    document.getElementById('start-time').innerHTML = flightData.start_time.slice(0, 8);
     document.getElementById('species').innerHTML = flightData.common_name;
     document.getElementById('duration').innerHTML = flightData.flight_duration;
     document.getElementById('max-distance').innerHTML = flightData.max_distance;
@@ -110,4 +110,8 @@ async function getFlightData() {
         document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
         document.getElementById('videoPlayer').load();
     }
+
+
+
+
 }
