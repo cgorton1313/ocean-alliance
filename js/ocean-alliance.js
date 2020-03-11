@@ -1,3 +1,4 @@
+// Icon Classes
 var LeafIcon = L.Icon.extend({
     options: {
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -26,6 +27,7 @@ var ExpeditionIcon = L.Icon.extend({
     }
 });
 
+// Icon variables
 var expeditionIcon = new ExpeditionIcon;
 
 var blackIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png'});
@@ -38,6 +40,10 @@ var greenPin = new LeafPin({iconUrl:  '../images/marker_pin_green.png'});
 var redPin = new LeafPin({iconUrl:  '../images/marker_pin_red.png'});
 var bluePin = new LeafPin({iconUrl:  '../images/marker_pin_blue.png'});
 
+// Feature Groups
+var flightDots = L.featureGroup();
+var expeditionMarkers = L.featureGroup();
+//map var
 var map = L.map('map').setView([35, -60], 3); 
 
 map.on('zoomend', function() {

@@ -2,13 +2,33 @@ function sendToConsole() {
     var zoomLevel = map.getZoom();
     console.log("map has been zoomed.");
     console.log("map zoom level: " + zoomLevel);
+    // // change the feature group according to the zoom level
+     if (zoomLevel > 3) {
+        //remove expidition feature group
+        expeditionMarkers.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+        // add flight feature group
+        flightDots.eachLayer(function (layer) {
+            map.addLayer(layer);
+        });
+     } else {
+         //add expidition feature group
+        expeditionMarkers.eachLayer(function (layer) {
+            map.addLayer(layer);
+        });
+        //remove flight feature group
+        flightDots.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+     }
+    
 }
 
 // Make all the flight dots and add them to the chart
 async function addFlightsToChart() {
     let response = await fetch('./flights');
     let flights = await response.json(); // maybe here you want to check what the data looks like? how?
-    let flightDots = L.featureGroup();
 
     for (let i = 0; i < flights.length; i++) {
         let markerPin;
@@ -55,7 +75,6 @@ async function addExpeditionsToChart() {
     // fetch expedition and turn into a let
     let response = await fetch('./expeditions');
     let expeditions= await response.json(); 
-    let expeditionMarkers = L.featureGroup();
 
     for (let i = 0; i < expeditions.length; i++) {
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
