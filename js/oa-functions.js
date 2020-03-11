@@ -52,24 +52,20 @@ async function addFlightsToChart() {
 }
 
 async function addExpeditionsToChart() {
-    console.log('inside async function')
     // fetch expedition and turn into a let
     let response = await fetch('./expeditions');
     let expeditions= await response.json(); 
     let expeditionMarkers = L.featureGroup();
 
     for (let i = 0; i < expeditions.length; i++) {
-        console.log('inside for loop and i is ' + i);
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
-            icon: expeditionIcon,
-        })
+            icon: expeditionIcon
+        });
 
-        expeditionMarkers.addLayer(exIcon)
-        console.log('adding one exIcon for i ' + i)
+        expeditionMarkers.addLayer(exIcon);
     };
 
     expeditionMarkers.addTo(map);
-    console.log('finished!')
 }
 
 
