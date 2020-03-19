@@ -68,7 +68,6 @@ async function addFlightsToChart() {
 
         // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', getFlightData });
     }
-    flightDots.addTo(map);
 }
 
 async function addExpeditionsToChart() {
