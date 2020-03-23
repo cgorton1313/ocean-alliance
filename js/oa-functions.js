@@ -74,7 +74,7 @@ async function addExpeditionsToChart() {
     for (let i = 0; i < expeditions.length; i++) {
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
             icon: expeditionIcon
-        }).on('click', getExpeditionPopUp);
+        });
 
         expeditionMarkers.addLayer(exIcon);
     };
@@ -121,3 +121,4 @@ async function getFlightData() {
         document.getElementById('videoPlayer').load();
     }
 }
+
