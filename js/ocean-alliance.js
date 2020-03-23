@@ -30,23 +30,24 @@ var ExpeditionIcon = L.Icon.extend({
 // Icon variables
 var expeditionIcon = new ExpeditionIcon;
 
-var blackIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png'});
-var greenIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png'});
-var redIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png'});
-var blueIcon = new LeafIcon({iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png'});
+var blackIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png' });
+var greenIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png' });
+var redIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png' });
+var blueIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png' });
 
-var blackPin = new LeafPin({iconUrl: '../images/marker_pin_black.png'});
-var greenPin = new LeafPin({iconUrl:  '../images/marker_pin_green.png'});
-var redPin = new LeafPin({iconUrl:  '../images/marker_pin_red.png'});
-var bluePin = new LeafPin({iconUrl:  '../images/marker_pin_blue.png'});
+var blackPin = new LeafPin({ iconUrl: '../images/marker_pin_black.png' });
+var greenPin = new LeafPin({ iconUrl: '../images/marker_pin_green.png' });
+var redPin = new LeafPin({ iconUrl: '../images/marker_pin_red.png' });
+var bluePin = new LeafPin({ iconUrl: '../images/marker_pin_blue.png' });
 
 // Feature Groups
 var flightDots = L.featureGroup();
 var expeditionMarkers = L.featureGroup();
 //map var
-var map = L.map('map').setView([35, -60], 3); 
+var map = L.map('map').setView([35, -60], 3);
 
-map.on('zoomend', function() {
+
+map.on('zoomend', function () {  // when map is zoomed
     sendToConsole();
 });
 
