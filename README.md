@@ -15,5 +15,3 @@ The server is restarted automatically every minute by executing the following cr
 ```
 cd /home/penguinh/snotbot.whale.org/ && nohup /home/penguinh/bin/node /home/penguinh/snotbot.whale.org/index.js &
 ```
-
-![My image](/images/404.png)
