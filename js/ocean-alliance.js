@@ -48,11 +48,12 @@ var map = L.map('map').setView([35, -60], 3);
 
 
 map.on('zoomend', function () {  // when map is zoomed
-    sendToConsole();
+    handleZoom();
 });
 
+// add base layer
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 }).addTo(map);
 
-addFlightsToChart();
+createFlightDots();
 addExpeditionsToChart();

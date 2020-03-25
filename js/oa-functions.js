@@ -1,4 +1,4 @@
-function sendToConsole() {  // change to something zoom related
+function handleZoom() {  
     // change the feature group according to the zoom level
     var zoomLevel = map.getZoom();
 
@@ -24,7 +24,7 @@ function sendToConsole() {  // change to something zoom related
 
 }
 
-async function addFlightsToChart() { // maybe change to createFlightDots
+async function createFlightDots() { 
     let response = await fetch('./flights');
     let flights = await response.json();
 
