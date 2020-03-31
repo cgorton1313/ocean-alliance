@@ -17,4 +17,4 @@ cd /home/penguinh/snotbot.whale.org/ && nohup /home/penguinh/bin/node /home/peng
 ```
 ## Database Details
 
-![Database ERD](images\ocean_alliance_ERD.png)
+![Database ERD](images/ocean_alliance_ERD.png)
