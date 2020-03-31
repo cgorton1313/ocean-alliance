@@ -1,9 +1,8 @@
-function sendToConsole() {
+function handleZoom() {  
+    // change the feature group according to the zoom level
     var zoomLevel = map.getZoom();
-    console.log("map has been zoomed.");
-    console.log("map zoom level: " + zoomLevel);
-    // // change the feature group according to the zoom level
-     if (zoomLevel > 3) {
+
+    if (zoomLevel > 3) {
         //remove expidition feature group
         expeditionMarkers.eachLayer(function (layer) {
             map.removeLayer(layer);
@@ -12,8 +11,8 @@ function sendToConsole() {
         flightDots.eachLayer(function (layer) {
             map.addLayer(layer);
         });
-     } else {
-         //add expidition feature group
+    } else {
+        //add expidition feature group
         expeditionMarkers.eachLayer(function (layer) {
             map.addLayer(layer);
         });
@@ -21,14 +20,13 @@ function sendToConsole() {
         flightDots.eachLayer(function (layer) {
             map.removeLayer(layer);
         });
-     }
-    
+    }
+
 }
 
-// Make all the flight dots and add them to the chart
-async function addFlightsToChart() {
+async function createFlightDots() { 
     let response = await fetch('./flights');
-    let flights = await response.json(); // maybe here you want to check what the data looks like? how?
+    let flights = await response.json();
 
     for (let i = 0; i < flights.length; i++) {
         let markerPin;
@@ -65,8 +63,6 @@ async function addFlightsToChart() {
 
             flightDots.addLayer(dot);
         }
-
-        // L.marker([flights[i].takeoff_latitude, flights[i].takeoff_longitude]).addTo(map).on('click', getFlightData });
     }
 }
 
@@ -88,7 +84,6 @@ async function addExpeditionsToChart() {
 
 
 async function getFlightData() {
-    // you'll need to call ./flightData?flight=xxx where xxx is the flight in question
     let response = await fetch('./flightData?flight=' + this.options.flight);
     let flightData = await response.json();
     // Unhide Data Colmun
@@ -107,7 +102,7 @@ async function getFlightData() {
     }
 
     date = year + '-' + month + '-' + dt
-        // set data
+    // set data
     document.getElementById('flight').innerHTML = flightData.flight;
     document.getElementById('date').innerHTML = date;
     document.getElementById('waterbody').innerHTML = flightData.flight_waterbody;
@@ -125,8 +120,5 @@ async function getFlightData() {
         document.getElementById('videoPlayerSrc').setAttribute("src", "./videos/" + this.options.mediaFile);
         document.getElementById('videoPlayer').load();
     }
-
-
-
-
 }
+
