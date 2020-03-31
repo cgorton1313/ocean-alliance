@@ -15,3 +15,6 @@ The server is restarted automatically every minute by executing the following cr
 ```
 cd /home/penguinh/snotbot.whale.org/ && nohup /home/penguinh/bin/node /home/penguinh/snotbot.whale.org/index.js &
 ```
+## Database Details
+
+![Database ERD](images\ocean_alliance_ERD.png)
