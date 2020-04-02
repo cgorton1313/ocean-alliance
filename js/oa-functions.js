@@ -1,22 +1,22 @@
-function handleZoom() {  
-    // change the feature group according to the zoom level
+function switchMarkers() {  
+    // change the feature group (markers) according to the zoom level
     var zoomLevel = map.getZoom();
 
     if (zoomLevel > 3) {
-        //remove expidition feature group
+        //remove expeditions markers from map
         expeditionMarkers.eachLayer(function (layer) {
             map.removeLayer(layer);
         });
-        // add flight feature group
+        // add flight dots to map
         flightDots.eachLayer(function (layer) {
             map.addLayer(layer);
         });
     } else {
-        //add expidition feature group
+        //add expeditions marker to map
         expeditionMarkers.eachLayer(function (layer) {
             map.addLayer(layer);
         });
-        //remove flight feature group
+        //remove fight dots from map
         flightDots.eachLayer(function (layer) {
             map.removeLayer(layer);
         });
@@ -74,7 +74,7 @@ async function addExpeditionsToChart() {
     for (let i = 0; i < expeditions.length; i++) {
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
             icon: expeditionIcon
-        });
+        }).bindPopup(createPopUpContent(expeditions,i)).openPopup();
 
         expeditionMarkers.addLayer(exIcon);
     };
@@ -122,3 +122,26 @@ async function getFlightData() {
     }
 }
 
+ function createPopUpContent(response,expeditionsNum){
+    // get data for specific expedition
+    let expedition = response[expeditionsNum];
+
+    // create let to hold the html for the popup content
+    let html = '<div class="popup__content">';
+    //Add Expedition Name
+    html += '<h1 class="exped_name">Expedition ' +expedition.expedition_name+ '</h1>';
+    // start unordered list for data
+    html += '<div class="exped_list"><ul>';
+    // location
+    html += '<li>Location: ' +expedition.expedition_location+ '</li>'
+    // number of flights
+    html += '<li>Number of Flights: ' +expedition.numFlights+ '</li>'
+    // link (dummy for now)
+    html += '<li> <a href=#>Link</a> </li>'
+
+    html += '</ul></div>'; // End list 
+    html += '</div>'; // End Popup Content
+
+    console.log(html);
+    return html;
+};

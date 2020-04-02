@@ -48,7 +48,7 @@ var map = L.map('map').setView([35, -60], 3);
 
 
 map.on('zoomend', function () {  // when map is zoomed
-    handleZoom();
+    switchMarkers(); 
 });
 
 // add base layer
