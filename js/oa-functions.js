@@ -24,6 +24,16 @@ function switchMarkers() {
 
 }
 
+//this function was made by using Jeffrey Morgan's code as a base.  
+// His code is under [The MIT License](https://opensource.org/licenses/MIT) 
+// [Here is here you can find his orginal code](https://usabilityetc.com/2016/07/how-to-center-a-leaflet-map-on-a-marker/)
+function centerLeafletMapOnMarker(expid) {
+    var latLngs = [ expid.expedition_latitude, expid.expedition_longitude];
+    var markerBounds = L.latLngBounds(latLngs);
+    map.fitBounds(markerBounds);
+    console.log('zoom level is ' +map.getZoom() );
+  };
+
 async function createFlightDots() { 
     let response = await fetch('./flights');
     let flights = await response.json();
@@ -133,11 +143,11 @@ async function getFlightData() {
     // start unordered list for data
     html += '<div class="exped_list"><ul>';
     // location
-    html += '<li>Location: ' +expedition.expedition_location+ '</li>'
+    html += '<li>Location: ' +expedition.expedition_location+ '</li>';
     // number of flights
-    html += '<li>Number of Flights: ' +expedition.numFlights+ '</li>'
-    // link (dummy for now)
-    html += '<li> <a href=#>Link</a> </li>'
+    html += '<li>Number of Flights: ' +expedition.numFlights+ '</li>';
+    html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(' +expedition+ ')\">HELLO</a> </li>';
+    
 
     html += '</ul></div>'; // End list 
     html += '</div>'; // End Popup Content
