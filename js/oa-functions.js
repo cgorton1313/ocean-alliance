@@ -1,8 +1,8 @@
 function switchMarkers() {  
     // change the feature group (markers) according to the zoom level
     var zoomLevel = map.getZoom();
-
-    if (zoomLevel > 3) {
+    const zoomThreshold = 7;
+    if (zoomLevel > zoomThreshold) {
         //remove expeditions markers from map
         expeditionMarkers.eachLayer(function (layer) {
             map.removeLayer(layer);
@@ -154,6 +154,5 @@ async function getFlightData() {
     html += '</ul></div>'; // End list 
     html += '</div>'; // End Popup Content
 
-    console.log(html);
     return html;
 };
