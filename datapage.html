@@ -3,29 +3,19 @@
 <title>SnotBot&reg; Tracker</title>
 <link rel="stylesheet" href="css/w3.css">
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/leaflet.css" />
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134489181-3"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
     gtag('js', new Date());
     gtag('config', 'UA-134489181-3');
 </script>
-
-<script src="js/leaflet.js"></script>
-
-<!--Style for map-->
-<style>
-    html,
-    body,
-    #map {
-        height: 100%;
-        width: 100%;
-    }
-</style>
 
 <body>
     <!--nav bar begins-->
@@ -34,65 +24,9 @@
     </div>
     <!--nav bar ends-->
 
-    <!-- everything below navbar starts -->
-    <div class="w3-container" style="height: 100%;">
-        <!--instruction panel begins-->
-        <div class="w3-panel w3-pale-yellow w3-display-container w3-border w3-round ">
-            <span onclick="this.parentElement.style.display='none'"
-                class="w3-button w3-large w3-display-topright">&times;</span>
-            <h3>Welcome to the SnotBot&reg; Tracker!</h3>
-            <p>Zoom and click on the markers for info and videos.</p>
-
-        </div>
-        <!--instruction panel ends-->
-        <!--chart/data colmun begins-->
-        <div class="w3-row w3-margin-bottom" style= 'height: 100%;'>
-            <!--chart begins-->
-            <div class="w3-threequarter" style= 'height: calc(100% - 60px);'>
-                <div id='map'>
-                </div>
-            </div>
-            <!--chart ends-->
-            <!--data colmun begins-->
-            <div id = "dataColmun" class="w3-quarter w3-padding-small" style="display:none">
-                <h3>Flight:<span id="flight"></span></h3>
-                <ul class=w3-ul>
-                    <li>Waterbody: <span id="waterbody"></span></li>
-                    <li>Objective: <span id="Objective"></span></li>
-                    <li>Species: <span id="species"></span></li>
-                    <li>Date: <span id="date"></span></li>
-                    <li>Start Time: <span id="start-time"></span></li>
-                    <li>Duration: <span id="duration"></span></li>
-                    <li>Max. Distance: <span id="max-distance"></span> meters</li>
-                    <li>Total Distance: <span id="total-distance"></span> meters</li>
-                    <button id="videoBtn" onclick="document.getElementById('video').style.display='block'"
-                        class="w3-button w3-blue w3-round" style="display:none" ;>Open Video</button>
-                </ul>
-            </div>
-            <!--data colmun ends-->
-        </div>
-        <!--chart/data colmun ends-->
-
-        <!--- Video Modal starts-->
-        <div id="video" class="w3-modal" style="z-index: 9999;">
-            <div class="w3-modal-content w3-card w3-animate-bottom w3-padding">
-                <div class="w3-container">
-                    <div><span onclick="document.getElementById('video').style.display='none'"
-                            class="w3-button w3-display-topright">&times;</span></div>
-                    <video id="videoPlayer" controls autoplay controls style="width: 95%">
-                        <source id="videoPlayerSrc" src="" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-        </div>
-        <!--- Video Modal ends-->
-
-    </div>
-    <!-- everything below navbar ends here -->
-
     <!--footer starts-->
     <div class="w3-row">
-        <footer class= "w3-center">Copyright &copy; 2020 - Ocean Alliance</footer>
+        <footer class="w3-center">Copyright &copy; 2020 - Ocean Alliance</footer>
     </div>
     <!--footer ends-->
     <script src="js/oa-functions.js"></script>
