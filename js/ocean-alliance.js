@@ -28,7 +28,7 @@ var ExpeditionIcon = L.Icon.extend({
 });
 
 // Icon variables
-var expeditionIcon = new ExpeditionIcon;
+var expeditionIcon = new ExpeditionIcon();
 
 var blackIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png' });
 var greenIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png' });
@@ -45,7 +45,6 @@ var flightDots = L.featureGroup();
 var expeditionMarkers = L.featureGroup();
 //map var
 var map = L.map('map').setView([35, -60], 3);
-
 
 map.on('zoomend', function () {  // when map is zoomed
     switchMarkers(); 
