@@ -81,7 +81,7 @@ async function addExpeditionsToChart() {
     for (let i = 0; i < expeditions.length; i++) {
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
             icon: expeditionIcon
-        }).bindPopup(createPopUpContent(expeditions,i)).openPopup();
+        }).bindPopup(createPopUpContent(expeditions[i])).openPopup();
 
         expeditionMarkers.addLayer(exIcon);
     };
@@ -127,10 +127,7 @@ async function getFlightData() {
     }
 }
 
- function createPopUpContent(response,expeditionsNum){
-    // get data for specific expedition
-    let expedition = response[expeditionsNum];
-
+ function createPopUpContent(expedition){
     // create let to hold the html for the popup content
     let html = '<div class="popup__content">';
     //Add Expedition Name
@@ -139,13 +136,14 @@ async function getFlightData() {
     html += '<div class="exped_list"><ul>';
     // location
     html += '<li>Location: ' +expedition.expedition_location+ '</li>';
-    // Month and year using start date
+    // Month and year using start date.  Using a dictionary to covert month # to the name
     const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
     let startdate = new Date(expedition.expedition_start_date);
     html += '<li>Start Month: ' +monthNames[startdate.getMonth()] + ' ' +startdate.getFullYear()+ '</li>';
     // number of flights
     html += '<li>Number of Flights: ' +expedition.numFlights+ '</li>';
+    //Link, on click calls the centering marker function
     html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(';
     html+= expedition.expedition_latitude+ ',' +expedition.expedition_longitude+ ')';
     html += '\">Zoom to expedition!</a> </li>';
