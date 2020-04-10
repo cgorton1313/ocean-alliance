@@ -24,11 +24,7 @@ function switchMarkers() {
 
 }
 
-//this function was made by using Jeffrey Morgan's code as a base.  
-// His code is under [The MIT License](https://opensource.org/licenses/MIT) 
-// [Here is here you can find his orginal code](https://usabilityetc.com/2016/07/how-to-center-a-leaflet-map-on-a-marker/)
 function centerLeafletMapOnMarker(lat, long) {
-    // var latLng = [ lat, long];
     var latLngArray = [ [lat,long] ];
     var markerBounds = L.latLngBounds(latLngArray);
     map.fitBounds(markerBounds);
@@ -99,8 +95,6 @@ async function getFlightData() {
     let flightData = await response.json();
     // Unhide Data Colmun
     document.getElementById('dataColmun').setAttribute("style", "display: block");
-    // switch date to YYYY/MM/DD using code from Mritunjay on stackoverflow
-    // https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript
     let date = new Date(flightData.flight_date);
     year = date.getFullYear();
     month = date.getMonth() + 1;
