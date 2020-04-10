@@ -145,6 +145,11 @@ async function getFlightData() {
     html += '<div class="exped_list"><ul>';
     // location
     html += '<li>Location: ' +expedition.expedition_location+ '</li>';
+    // Month and year using start date
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+    let startdate = new Date(expedition.expedition_start_date);
+    html += '<li>Start Month: ' +monthNames[startdate.getMonth()] + ' ' +startdate.getFullYear()+ '</li>';
     // number of flights
     html += '<li>Number of Flights: ' +expedition.numFlights+ '</li>';
     html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(';
