@@ -142,7 +142,7 @@ async function getFlightData() {
     let startdate = new Date(expedition.expedition_start_date);
     html += '<li>Start Month: ' +monthNames[startdate.getMonth()] + ' ' +startdate.getFullYear()+ '</li>';
     // number of flights
-    html += '<li>Number of Flights: ' +expedition.numFlights+ '</li>';
+    html += '<li>Number of Flights: ' +expedition.num_Flights+ '</li>';
     //Link, on click calls the centering marker function
     html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(';
     html+= expedition.expedition_latitude+ ',' +expedition.expedition_longitude+ ')';
