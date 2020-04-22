@@ -36,7 +36,7 @@ ON everythingButMediaFiles.flight = use_media.flight;
 async function getFlightData(flight) {
     let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name, 'media_file_name' 
   FROM flights, objective_codes, species, flights_species
-  WHERE flights.flight_objective = objective_codes.objective_code
+  WHERE flights.objective_id = objective_codes.objective_id
   AND flights.flight = flights_species.flight
   AND species.species_id = flights_species.species_id
   AND flights.flight IS NOT null
