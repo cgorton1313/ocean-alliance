@@ -54,6 +54,12 @@ http.createServer(function (request, response) {
       response.writeHead(200, { 'Content-Type': contentType });
       response.end(JSON.stringify(flightData), 'utf-8'); 
     });
+  } else if (filePath.startsWith('./dataTable')) {
+    contentType = mimeTypes['.json'];
+    snotbotData.getTableData().then(function (tabledata) {
+      response.writeHead(200, { 'Content-Type': contentType });
+      response.end(JSON.stringify(tabledata), 'utf-8');
+    });   
 
   } else { // get a static file, like css, images, etc.
     fs.readFile(filePath, function (error, content) {

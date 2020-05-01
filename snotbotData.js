@@ -76,6 +76,43 @@ async function getExpeditions() {
     return result;
 
 }
+
+async function getTableData() {
+    let sql = `
+    SELECT
+    expeditions.expedition_name,
+    expeditions.expedition_location,
+    flights.flight,
+    flights.flight_date,
+    flights.flight_waterbody,
+    flights.flight_duration,
+    flights.max_altitude,
+    flights.max_distance,
+    flights.total_distance,
+    objective_codes.objective,
+    species.common_name,
+    media_files.media_file_name,
+    media_files.use_on_web
+FROM
+    flights,
+    expeditions, 
+    objective_codes, 
+    flights_species,
+    media_files,
+    species
+WHERE
+    flights.expedition_id = expeditions.expedition_id
+    AND flights.objective_id = objective_codes.objective_id
+    AND flights_species.flight = flights.flight
+    AND flights_species.species_id = species.species_id
+    AND media_files.flight = flights.flight
+    `;
+
+    let result = await getQueryData(sql);
+    return result;
+
+}
+
 // this function will connect to the database, query, disconnect, and return the query result
 async function getQueryData(sql) {
     // this statement uses the values from config.js
@@ -88,7 +125,7 @@ async function getQueryData(sql) {
     });
 
     // standard connect operation with some error handling
-    connection.connect(function(err) {
+    connection.connect(function (err) {
         if (err) {
             log.info('error when connecting to db:', err);
         } else {
@@ -117,5 +154,6 @@ async function getQueryData(sql) {
 module.exports = {
     getFlights,
     getFlightData,
-    getExpeditions
+    getExpeditions,
+    getTableData
 }
