@@ -20,6 +20,17 @@ app.get('/expeditions', async function (req, res) {
   res.json(await snotbotData.getExpeditions());
 });
 
+//flights
+app.get('/flights', async function (req, res) {
+  res.json(await snotbotData.getFlights());
+});
+
+//Flight Data
+app.get('/flightData*', async function (req, res) {
+  res.json(await snotbotData.getFlightData(req.query.flight));
+});
+
+//Start Sever
 app.listen(config.app.port, logServer());
 
 function logServer() {
