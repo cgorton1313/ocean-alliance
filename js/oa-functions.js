@@ -121,4 +121,3 @@ async function getFlightData() {
         document.getElementById('videoPlayer').load();
     }
 }
-
