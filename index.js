@@ -30,6 +30,11 @@ app.get('/flightData*', async function (req, res) {
   res.json(await snotbotData.getFlightData(req.query.flight));
 });
 
+//404 status, error, and page
+app.use(function(req,res,next) {
+  res.status(404).sendFile(path.join(__dirname + '/public/404.html'));
+});
+
 //Start Sever
 app.listen(config.app.port, logServer());
 
