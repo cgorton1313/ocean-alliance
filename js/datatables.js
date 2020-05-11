@@ -1,5 +1,4 @@
 console.log("we're here");
-
 getTableData();
 
 let dataTable = `
