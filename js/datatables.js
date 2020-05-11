@@ -43,4 +43,9 @@ async function getTableData() {
     console.log(dataTable);
     }
 
-//hello im here
+//for loop to go through each item
+//repeat as needed (length of array)
+//specify row and collumn
+//add </tbody></table>
+
+//in async function?
