@@ -143,7 +143,6 @@ async function getFlightData() {
     html += '<li>Start Month: ' +monthNames[startdate.getMonth()] + ' ' +startdate.getFullYear()+ '</li>';
     // number of flights
     html += '<li>Number of Flights: ' +expedition.num_flights+ '</li>';
-    console.log(expedition.num_flights);
     //Link, on click calls the centering marker function
     html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(';
     html+= expedition.expedition_latitude+ ',' +expedition.expedition_longitude+ ')';
