@@ -1,51 +1,48 @@
-console.log("we're here");
 getTableData();
 
 let dataTable = `
-<table id="flightsTable" class="display">
-    <thead>
-        <tr>
-            <th>expedition_name</th>
-            <th>expedition_location</th>
-            <th>flight</th>
-            <th>flight_date</th>
-            <th>flight_waterbody</th>
-            <th>objective</th>
-            <th>species</th>
-            <th>common_name</th>
-            <th>video link</th>
-            <th>flight_duration</th>
-            <th>max_altitude</th>
-            <th>max_distance</th>
-            <th>total_distance</th>
-        </tr>
-    </thead>
-<tbody>
+    <table id="flightsTable" class="display">
+        <thead>
+            <tr>
+                <th>expedition_name</th>
+                <th>expedition_location</th>
+                <th>flight</th>
+                <th>flight_date</th>
+                <th>flight_waterbody</th>
+                <th>objective</th>
+                <th>species</th>
+                <th>common_name</th>
+                <th>video link</th>
+                <th>flight_duration</th>
+                <th>max_altitude</th>
+                <th>max_distance</th>
+                <th>total_distance</th>
+            </tr>
+        </thead>
+    <tbody> 
+
+//data goes here
+
+    </tbody>
+    </table>
+
 `;
 
-document.getElementById('dataTable').innerHTML=dataTable;
+document.getElementById('dataTable').innerHTML = dataTableStr;
 
-$(document).ready( function () {
+$(document).ready(function () {
     $('#flightsTable').DataTable();
-    } );
+});
 
 async function getTableData() {
-        // fetch tabledata and turn into a let
-        let response = await fetch('./dataTable');
-        let dataTable = await response.json();
-    
-        // for (let i = 0; i < expeditions.length; i++) {
-        //     let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
-        //         icon: expeditionIcon
-        //     });
-    
-        // };
-    console.log(dataTable);
-    }
+    // fetch tabledata and turn into a let
+    let response = await fetch('./dataTable');
+    let dataTableStr = await response.json();
 
-//for loop to go through each item
-//repeat as needed (length of array)
-//specify row and collumn
-//add </tbody></table>
+    console.log(dataTableStr);
 
-//in async function?
+    for (let i = 0; i < dataTableStr.length; i++) {
+        dataTableStr+="<tr><td>"+ dataTableStr[i] +"</td></tr>";
+
+    };
+}
