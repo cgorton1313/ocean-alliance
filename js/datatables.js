@@ -1,6 +1,18 @@
 getTableData();
 
-let dataTable = `
+
+$(document).ready(function () {
+    $('#flightsTable').DataTable();
+});
+
+async function getTableData() {
+    // fetch tabledata and turn into a let
+    let response = await fetch('./dataTable');
+    let dataTableStr = await response.json();
+
+    console.log(dataTableStr);
+
+let dataTableHTML = `
     <table id="flightsTable" class="display">
         <thead>
             <tr>
@@ -19,27 +31,25 @@ let dataTable = `
                 <th>total_distance</th>
             </tr>
         </thead>
-    <tbody> 
-//getTableData();
-    </tbody>
-    </table>
+        <tbody> 
 `;
-
-$(document).ready(function () {
-    $('#flightsTable').DataTable();
-});
-
-async function getTableData() {
-    // fetch tabledata and turn into a let
-    let response = await fetch('./dataTable');
-    let dataTableStr = await response.json();
-
-    console.log(dataTableStr);
-    let str = "<table>"
     for (let i = 0; i < dataTableStr.length; i++) {
-        dataTableStr += "<tr><td>" + dataTableStr[i] + "</td></tr>";
-    };
-    "</table>"
-}
+        dataTableHTML += "<tr><td>" + dataTableStr[i].expedition_name + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].expedition_location + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].flight + "</td></tr>";        
+        dataTableHTML += "<tr><td>" + dataTableStr[i].flight_date + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].flight_waterbody + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].objective + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].species + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].common_name + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].flight + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].flight_duration + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].max_altitude + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].max_distance + "</td></tr>";
+        dataTableHTML += "<tr><td>" + dataTableStr[i].total_distance + "</td></tr>";
 
-document.getElementById('dataTable').innerHTML = dataTableStr;
+    };
+dataTableHTML += '</tbody></table>';
+document.getElementById('dataTable').innerHTML = dataTableHTML;
+
+}
