@@ -35,10 +35,10 @@ var greenIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-
 var redIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png' });
 var blueIcon = new LeafIcon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png' });
 
-var blackPin = new LeafPin({ iconUrl: '../images/marker_pin_black.png' });
-var greenPin = new LeafPin({ iconUrl: '../images/marker_pin_green.png' });
-var redPin = new LeafPin({ iconUrl: '../images/marker_pin_red.png' });
-var bluePin = new LeafPin({ iconUrl: '../images/marker_pin_blue.png' });
+var blackPin = new LeafPin({ iconUrl: 'images/marker_pin_black.png' });
+var greenPin = new LeafPin({ iconUrl: 'images/marker_pin_green.png' });
+var redPin = new LeafPin({ iconUrl: 'images/marker_pin_red.png' });
+var bluePin = new LeafPin({ iconUrl: 'images/marker_pin_blue.png' });
 
 // Feature Groups
 var flightDots = L.featureGroup();
