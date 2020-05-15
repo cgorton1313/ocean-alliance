@@ -20,15 +20,10 @@ let dataTable = `
             </tr>
         </thead>
     <tbody> 
-
-//data goes here
-
+//getTableData();
     </tbody>
     </table>
-
 `;
-
-document.getElementById('dataTable').innerHTML = dataTableStr;
 
 $(document).ready(function () {
     $('#flightsTable').DataTable();
@@ -40,9 +35,11 @@ async function getTableData() {
     let dataTableStr = await response.json();
 
     console.log(dataTableStr);
-
+    let str = "<table>"
     for (let i = 0; i < dataTableStr.length; i++) {
-        dataTableStr+="<tr><td>"+ dataTableStr[i] +"</td></tr>";
-
+        dataTableStr += "<tr><td>" + dataTableStr[i] + "</td></tr>";
     };
+    "</table>"
 }
+
+document.getElementById('dataTable').innerHTML = dataTableStr;
