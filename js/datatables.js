@@ -17,7 +17,6 @@ let dataTableHTML = `
                 <th>flight_date</th>
                 <th>flight_waterbody</th>
                 <th>objective</th>
-                <th>species</th>
                 <th>common_name</th>
                 <th>video link</th>
                 <th>flight_duration</th>
@@ -35,9 +34,8 @@ let dataTableHTML = `
         dataTableHTML += "<td>" + dataTableStr[i].flight_date + "</td>";
         dataTableHTML += "<td>" + dataTableStr[i].flight_waterbody + "</td>";
         dataTableHTML += "<td>" + dataTableStr[i].objective + "</td>";
-        dataTableHTML += "<td>" + dataTableStr[i].species + "</td>";
         dataTableHTML += "<td>" + dataTableStr[i].common_name + "</td>";
-        dataTableHTML += "<td>" + dataTableStr[i].flight + "</td>";
+        dataTableHTML += "<td>" + dataTableStr[i].media_file_name + "</td>";
         dataTableHTML += "<td>" + dataTableStr[i].flight_duration + "</td>";
         dataTableHTML += "<td>" + dataTableStr[i].max_altitude + "</td>";
         dataTableHTML += "<td>" + dataTableStr[i].max_distance + "</td>";
