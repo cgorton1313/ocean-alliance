@@ -15,34 +15,6 @@ app.get('/', async function (req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-  // if (filePath == './') {
-  //   myPages.getIndex(response);
-  // } else if (filePath.startsWith('./expeditions')) {
-  //   contentType = mimeTypes['.json'];
-  //   snotbotData.getExpeditions().then(function (expeditions) {
-  //     response.writeHead(200, { 'Content-Type': contentType });
-  //     response.end(JSON.stringify(expeditions), 'utf-8');
-  //   });     
-  // } else if (filePath.startsWith('./flights')) {    // return all flights (minimal data)
-  //   contentType = mimeTypes['.json'];
-  //   snotbotData.getFlights().then(function (flights) {
-  //     response.writeHead(200, { 'Content-Type': contentType });
-  //     response.end(JSON.stringify(flights), 'utf-8');
-  //   });
-  // } else if (filePath.startsWith('./flightData')) {    //return one flight (all the data)
-  //   contentType = mimeTypes['.json'];
-  //   snotbotData.getFlightData(queryObject.flight).then(function (flightData) {
-  //     response.writeHead(200, { 'Content-Type': contentType });
-  //     response.end(JSON.stringify(flightData), 'utf-8'); 
-  //   });
-  // } else if (filePath.startsWith('./dataTable')) {
-  //   contentType = mimeTypes['.json'];
-  //   snotbotData.getTableData().then(function (tabledata) {
-  //     response.writeHead(200, { 'Content-Type': contentType });
-  //     response.end(JSON.stringify(tabledata), 'utf-8');
-  //   });
-
-
 // datatable
 app.get('/datatable', async function (req, res) {
   res.json(await snotbotData.getTableData());
