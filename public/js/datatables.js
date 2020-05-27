@@ -46,7 +46,8 @@ dataTableHTML += '</tbody></table>';
 document.getElementById('dataTable').innerHTML = dataTableHTML;
 
 $(document).ready(function () {
-    $('#flightsTable').DataTable();
+    $('#flightsTable').DataTable({responsive: true});
+    
 });
 
 }
