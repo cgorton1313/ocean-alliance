@@ -36,7 +36,7 @@ ON everythingButMediaFiles.flight = use_media.flight;
 async function getFlightData(flight) {
     let sql = `SELECT flights.flight, take_off_latitude, take_off_longitude, flight_date, flight_country, flight_location, flight_waterbody, objective, flight_airframe, start_time, end_time, flight_duration, max_distance, total_distance, common_name, 'media_file_name' 
   FROM flights, objective_codes, species, flights_species
-  WHERE flights.flight_objective = objective_codes.objective_code
+  WHERE flights.objective_id = objective_codes.objective_id
   AND flights.flight = flights_species.flight
   AND species.species_id = flights_species.species_id
   AND flights.flight IS NOT null
@@ -63,13 +63,48 @@ async function getFlightData(flight) {
 
 async function getExpeditions() {
     let sql = `
-    SELECT expeditions.expedition_name, expeditions.expedition_location, expeditions.expedition_start_date, expeditions.expedition_end_date, expeditions.expedition_latitude, expeditions.expedition_longitude, flightCount.numFlights 
+SELECT expeditions.expedition_name, expeditions.expedition_location, expeditions.expedition_start_date, expeditions.expedition_end_date, expeditions.expedition_latitude, expeditions.expedition_longitude, flightCount.num_flights 
     FROM 
-    (SELECT expeditions.expedition_id, COUNT(flight) as numFlights 
+    (SELECT expeditions.expedition_id, COUNT(flight) as num_flights 
      FROM expeditions, flights 
      WHERE expeditions.expedition_id = flights.expedition_id 
      GROUP BY expeditions.expedition_id) as flightCount, expeditions 
-     WHERE expeditions.expedition_id = flightCount.expedition_id;
+     WHERE expeditions.expedition_id = flightCount.expedition_id
+     `;
+    let result = await getQueryData(sql);
+    return result;
+
+}
+
+async function getTableData() {
+    let sql = `
+    SELECT
+    expeditions.expedition_name,
+    expeditions.expedition_location,
+    flights.flight,
+    flights.flight_date,
+    flights.flight_waterbody,
+    flights.flight_duration,
+    flights.max_altitude,
+    flights.max_distance,
+    flights.total_distance,
+    objective_codes.objective,
+    species.common_name,
+    media_files.media_file_name,
+    media_files.use_on_web
+FROM
+    flights,
+    expeditions, 
+    objective_codes, 
+    flights_species,
+    media_files,
+    species
+WHERE
+    flights.expedition_id = expeditions.expedition_id
+    AND flights.objective_id = objective_codes.objective_id
+    AND flights_species.flight = flights.flight
+    AND flights_species.species_id = species.species_id
+    AND media_files.flight = flights.flight
     `;
 
     let result = await getQueryData(sql);
@@ -112,6 +147,7 @@ WHERE
     return result;
 
 }
+
 
 // this function will connect to the database, query, disconnect, and return the query result
 async function getQueryData(sql) {

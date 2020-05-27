@@ -1,28 +1,35 @@
-function handleZoom() {  
-    // change the feature group according to the zoom level
+function switchMarkers() {  
+    // change the feature group (markers) according to the zoom level
     var zoomLevel = map.getZoom();
-
-    if (zoomLevel > 3) {
-        //remove expidition feature group
+    const zoomThreshold = 7;
+    if (zoomLevel > zoomThreshold) {
+        //remove expeditions markers from map
         expeditionMarkers.eachLayer(function (layer) {
             map.removeLayer(layer);
         });
-        // add flight feature group
+        // add flight dots to map
         flightDots.eachLayer(function (layer) {
             map.addLayer(layer);
         });
     } else {
-        //add expidition feature group
+        //add expeditions marker to map
         expeditionMarkers.eachLayer(function (layer) {
             map.addLayer(layer);
         });
-        //remove flight feature group
+        //remove fight dots from map
         flightDots.eachLayer(function (layer) {
             map.removeLayer(layer);
         });
     }
 
 }
+
+function centerLeafletMapOnMarker(lat, long) {
+    var latLngArray = [ [lat,long] ];
+    var markerBounds = L.latLngBounds(latLngArray);
+    map.fitBounds(markerBounds);
+    map.setZoom(8);
+  };
 
 async function createFlightDots() { 
     let response = await fetch('./flights');
@@ -74,7 +81,7 @@ async function addExpeditionsToChart() {
     for (let i = 0; i < expeditions.length; i++) {
         let exIcon = L.marker([expeditions[i].expedition_latitude, expeditions[i].expedition_longitude], {
             icon: expeditionIcon
-        });
+        }).bindPopup(createPopUpContent(expeditions[i])).openPopup();
 
         expeditionMarkers.addLayer(exIcon);
     };
@@ -88,8 +95,6 @@ async function getFlightData() {
     let flightData = await response.json();
     // Unhide Data Colmun
     document.getElementById('dataColmun').setAttribute("style", "display: block");
-    // switch date to YYYY/MM/DD using code from Mritunjay on stackoverflow
-    // https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript
     let date = new Date(flightData.flight_date);
     year = date.getFullYear();
     month = date.getMonth() + 1;
@@ -121,3 +126,30 @@ async function getFlightData() {
         document.getElementById('videoPlayer').load();
     }
 }
+
+ function createPopUpContent(expedition){
+    // create let to hold the html for the popup content
+    let html = '<div class="popup__content">';
+    //Add Expedition Name
+    html += '<h1 class="exped_name">Expedition ' +expedition.expedition_name+ '</h1>';
+    // start unordered list for data
+    html += '<div class="exped_list"><ul>';
+    // location
+    html += '<li>Location: ' +expedition.expedition_location+ '</li>';
+    // Month and year using start date.  Using a dictionary to covert month # to the name
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+    let startdate = new Date(expedition.expedition_start_date);
+    html += '<li>Start Month: ' +monthNames[startdate.getMonth()] + ' ' +startdate.getFullYear()+ '</li>';
+    // number of flights
+    html += '<li>Number of Flights: ' +expedition.num_flights+ '</li>';
+    //Link, on click calls the centering marker function
+    html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(';
+    html+= expedition.expedition_latitude+ ',' +expedition.expedition_longitude+ ')';
+    html += '\">Zoom to expedition!</a> </li>';
+
+    html += '</ul></div>'; // End list 
+    html += '</div>'; // End Popup Content
+
+    return html;
+};
