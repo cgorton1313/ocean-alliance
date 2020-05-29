@@ -1,4 +1,4 @@
-function switchMarkers() {  
+function switchMarkers() {
     // change the feature group (markers) according to the zoom level
     var zoomLevel = map.getZoom();
     const zoomThreshold = 7;
@@ -21,17 +21,16 @@ function switchMarkers() {
             map.removeLayer(layer);
         });
     }
-
 }
 
 function centerLeafletMapOnMarker(lat, long) {
-    var latLngArray = [ [lat,long] ];
+    var latLngArray = [[lat, long]];
     var markerBounds = L.latLngBounds(latLngArray);
     map.fitBounds(markerBounds);
     map.setZoom(8);
-  };
+};
 
-async function createFlightDots() { 
+async function createFlightDots() {
     let response = await fetch('./flights');
     let flights = await response.json();
 
@@ -45,7 +44,7 @@ async function createFlightDots() {
             markerPin = greenPin;
             markerIcon = greenIcon;
         } else if (flights[i].common_name == 'Blue Whale') {
-            markerPin = blackPin;
+            markerPin = bluePin;
             markerIcon = blueIcon;
         } else {
             markerPin = blackPin;
@@ -127,25 +126,25 @@ async function getFlightData() {
     }
 }
 
- function createPopUpContent(expedition){
+function createPopUpContent(expedition) {
     // create let to hold the html for the popup content
     let html = '<div class="popup__content">';
     //Add Expedition Name
-    html += '<h1 class="exped_name">Expedition ' +expedition.expedition_name+ '</h1>';
+    html += '<h1 class="exped_name">Expedition ' + expedition.expedition_name + '</h1>';
     // start unordered list for data
     html += '<div class="exped_list"><ul>';
     // location
-    html += '<li>Location: ' +expedition.expedition_location+ '</li>';
+    html += '<li>Location: ' + expedition.expedition_location + '</li>';
     // Month and year using start date.  Using a dictionary to covert month # to the name
     const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+        "July", "August", "September", "October", "November", "December"];
     let startdate = new Date(expedition.expedition_start_date);
-    html += '<li>Start Month: ' +monthNames[startdate.getMonth()] + ' ' +startdate.getFullYear()+ '</li>';
+    html += '<li>Start Month: ' + monthNames[startdate.getMonth()] + ' ' + startdate.getFullYear() + '</li>';
     // number of flights
-    html += '<li>Number of Flights: ' +expedition.num_flights+ '</li>';
+    html += '<li>Number of Flights: ' + expedition.num_flights + '</li>';
     //Link, on click calls the centering marker function
     html += '<li> <a href=\"#\" onclick=\"centerLeafletMapOnMarker(';
-    html+= expedition.expedition_latitude+ ',' +expedition.expedition_longitude+ ')';
+    html += expedition.expedition_latitude + ',' + expedition.expedition_longitude + ')';
     html += '\">Zoom to expedition!</a> </li>';
 
     html += '</ul></div>'; // End list 
