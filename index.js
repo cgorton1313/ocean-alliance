@@ -4,8 +4,7 @@ const app = express();
 const path = require('path');
 const config = require(__dirname + '/config.js')
 const snotbotData = require(__dirname + '/snotbotData.js');
-// create simple logger 
-const log = require('simple-node-logger').createSimpleLogger('project.log');
+const log = require(__dirname + '/logger.js');
 
 // send all the static stuff
 app.use(express.static(path.join(__dirname + '/public')));
@@ -36,7 +35,7 @@ app.get('/flightData*', async function (req, res) {
 });
 
 //404 status, error, and page
-app.use(function(req,res,next) {
+app.use(function (req, res, next) {
   res.status(404).sendFile(path.join(__dirname + '/public/404.html'));
 });
 

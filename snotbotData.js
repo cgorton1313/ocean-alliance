@@ -1,7 +1,7 @@
 const config = require('./config.js');
 const mysql = require('mysql');
 const util = require('util'); // for promisify
-const log = require('simple-node-logger').createSimpleLogger('project.log');
+const log = require(__dirname + '/logger.js');
 
 async function getFlights() {
     // create a string that represents your SQL statement

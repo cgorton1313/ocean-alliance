@@ -4,8 +4,6 @@ async function getTableData() {
     let response = await fetch('./dataTable');
     let dataTableStr = await response.json();
 
-    console.log(dataTableStr);
-
     let dataTableHTML = `
         <table id="flightsTable" class="display">
             <thead>
